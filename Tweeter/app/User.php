@@ -10,6 +10,21 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public function tweets(){
+        return $this->hasMany('App\Tweets');
+    }
+
+    public function likes(){
+        return $this->hasMany('App\Likes');
+    }
+
+    public function comments(){
+        return $this->hasMany('App\Comments');
+    }
+
+    public function follows(){
+        return $this->hasMany('App\Follows');
+    }
     /**
      * The attributes that are mass assignable.
      *
