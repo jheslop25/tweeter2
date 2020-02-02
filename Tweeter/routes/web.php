@@ -18,3 +18,48 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//begin routes to tweetsController
+
+Route::get('/tweets', 'tweetsController@showAllFollowed');
+
+Route::post('/tweets/create', 'tweetsController@createTweet');
+
+Route::post('/tweets/update', 'tweetsController@updateTweet');
+
+Route::post('/tweets/destroy', 'tweetsController@destroyTweet');
+
+Route::get('/tweets/view/{tweet_id}', 'tweetsController@viewTweet');
+
+//Begin Routes to tweetsCommentController
+
+Route::post('/tweets/comment/create', 'tweetCommentsController@createComment');
+
+Route::post('/tweets/comment/delete', 'tweetCommentsController@deleteComment');
+
+Route::post('/tweets/comment/edit', 'tweetCommentsController@editComment');
+
+//Begin Routes to likesController
+
+Route::post('/tweets/likes', 'likesController@addLike');
+
+Route::post('/tweets/unlike', 'likesController@removeLike');
+
+// Begin Routes to ProfileController
+
+Route::get('/user/{user_id}', 'profileController@showUser');
+
+
+Route::post('/user/edit', 'profileController@updateUser');
+
+//Begin Routes to profileDestroyController
+
+Route::get('/user/destroy', 'profileDestroyController@beginDestroy');
+
+Route::post('/user/destroy/confirm', 'profileDestroyController@confirmDestroy');
+
+//Begin Routes To FollowsController
+
+Route::post('/user/follow', 'followsController@followUser');
+
+Route::post('/user/unfollow', 'followsController@unfollowUser');
