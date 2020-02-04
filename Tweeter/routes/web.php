@@ -25,6 +25,8 @@ Route::get('/tweets', 'tweetsController@showAllFollowed');
 
 Route::post('/tweets/create', 'tweetsController@createTweet');
 
+Route::get('/tweets/goToEdit/{id}', 'tweetsController@returnEdit');
+
 Route::post('/tweets/update', 'tweetsController@updateTweet');
 
 Route::post('/tweets/destroy', 'tweetsController@destroyTweet');

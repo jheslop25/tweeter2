@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
 class profileDestroyController extends Controller
 {
     public function beginDestroy(){
