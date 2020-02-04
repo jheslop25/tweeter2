@@ -56,11 +56,13 @@ Route::post('/user/edit', 'profileController@updateUser');
 
 //Begin Routes to profileDestroyController
 
-Route::get('/user/destroy', 'profileDestroyController@beginDestroy');
+Route::get('/user/destroy/{user_id}', 'profileDestroyController@beginDestroy');
 
 Route::post('/user/destroy/confirm', 'profileDestroyController@confirmDestroy');
 
 //Begin Routes To FollowsController
+
+Route::get('/users/', 'followsController@showAllUsers');
 
 Route::post('/user/follow', 'followsController@followUser');
 

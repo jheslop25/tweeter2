@@ -17,6 +17,7 @@
                     You are logged in!
                     <a href="/tweets"> see all tweets</a>
                     <a href="/user/{{Auth::user()->id}}">My profile</a>
+                    <a href="/users">See All Users</a>
                 </div>
             </div>
         </div>

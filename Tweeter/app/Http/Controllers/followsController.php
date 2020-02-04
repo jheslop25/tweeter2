@@ -7,11 +7,38 @@ use Auth;
 
 class followsController extends Controller
 {
-    public function followUser(){
-        // adds follow record to DB via model
+    public function showAllUsers(){
+        $users = \App\User::all();
+        if(Auth::check()){
+            $follows = \App\Follows::where('user_id', Auth::user()->id)->get();
+            //var_dump($follows);
+            return view('users', ['users' => $users, 'follows' => $follows]);
+        } else {
+            return redirect('/home');
+        }
+
     }
 
-    public function unfollowUser(){
+    public function followUser(Request $request){
+        // adds follow record to DB via model
+        $userToFollow = $request->followId;
+        //var_dump($request->followId);
+        $userId = Auth::user()->id;
+        $relationship = new \App\Follows();
+        $relationship->user_id = $userId;
+        $relationship->followed_id = $userToFollow;
+
+        $relationship->save();
+
+        return redirect('/users');
+    }
+
+    public function unfollowUser(Request $request){
         // destroys follow record in DB via Model
+        $unfollow = $request->followedID;
+        //var_dump($unfollow);
+        \App\Follows::where('followed_id', $unfollow)->where('user_id', Auth::user()->id)->delete();
+
+        return redirect('/users');
     }
 }

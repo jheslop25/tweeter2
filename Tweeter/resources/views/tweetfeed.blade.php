@@ -23,6 +23,10 @@
     @csrf
     <button type="submit" name="id">View Tweet</button>
 </form>
+<form action="/tweets/likes" method="post">
+    @csrf
+<button type="submit" name="like" value="{{$tweet->tweet_id}}">Like This Tweet</button>
+</form>
 @endforeach
 <form action="/tweets/create" method="post">
 @csrf

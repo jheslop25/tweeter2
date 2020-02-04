@@ -19,6 +19,15 @@
 @error('email')
 <div class="alert alert-danger">{{ $message }}</div>
 @enderror
+<form action="/user/destroy/{{Auth::user()->id}}" method="get">
+@csrf
+<button type="submit">Delete My Account</button>
+</form>
+<form action="/user/follow">
+@csrf
+<button type="submit" name="FolowId" value="{{$user[0]->user_id}}">Follow</button>
+</form>
+
 @endif
 
 @foreach ($tweets as $tweet)
