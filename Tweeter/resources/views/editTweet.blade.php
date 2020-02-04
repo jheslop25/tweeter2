@@ -5,6 +5,7 @@
 <h5>{{$tweet['user_id']}}</h5>
 <h6>{{$tweet['content']}}</h6>
 @endforeach
+@if (Auth::user()->id == $tweet['user_id'])
 <form action="/tweets/update" method="post">
     @csrf
 <input type="number" name="tweet_id" value="{{$tweet['id']}}" readonly>
@@ -14,4 +15,5 @@
     @error('content')
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
+@endif
 @endsection

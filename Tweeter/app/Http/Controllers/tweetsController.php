@@ -72,7 +72,9 @@ class tweetsController extends Controller
 
     }
 
-    public function viewTweet(){
+    public function viewTweet($id){
         // returns a view with a single tweet
+        $tweets = \App\Tweets::find($id);
+        return view('editTweet', ['tweets' => [$tweets]]);
     }
 }

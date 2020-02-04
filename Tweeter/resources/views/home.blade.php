@@ -15,6 +15,8 @@
                     @endif
 
                     You are logged in!
+                    <a href="/tweets"> see all tweets</a>
+                    <a href="/user/{{Auth::user()->id}}">My profile</a>
                 </div>
             </div>
         </div>

@@ -19,6 +19,10 @@
         <button type="submit" name="id" value="{{$tweet->id}}" onclick="Are you sure?">Delete Tweet</button>
     </form>
 @endif
+<form action="/tweets/view/{{$tweet->id}}" method="get">
+    @csrf
+    <button type="submit" name="id">View Tweet</button>
+</form>
 @endforeach
 <form action="/tweets/create" method="post">
 @csrf
