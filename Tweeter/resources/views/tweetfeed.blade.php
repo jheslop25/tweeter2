@@ -9,10 +9,16 @@
 {{-- @php
     var_dump($tweet);
 @endphp --}}
-<form action="/tweets/goToEdit/{{$tweet->user_id}}" method="get">
-    @csrf
-<button type="submit" name="edit" value="{{$tweet->id}}">Edit Tweet</button>
-</form>
+@if (Auth::user()->id == $tweet->user_id)
+    <form action="/tweets/goToEdit/{{$tweet->user_id}}" method="get">
+        @csrf
+        <button type="submit" name="edit" value="{{$tweet->id}}">Edit Tweet</button>
+    </form>
+    <form action="/tweets/destroy/" method="post">
+        @csrf
+        <button type="submit" name="id" value="{{$tweet->id}}" onclick="Are you sure?">Delete Tweet</button>
+    </form>
+@endif
 @endforeach
 <form action="/tweets/create" method="post">
 @csrf

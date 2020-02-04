@@ -62,8 +62,14 @@ class tweetsController extends Controller
 
     }
 
-    public function destroyTweet(){
+    public function destroyTweet(Request $request){
         //verifies input, Auth, and passes instructions to model
+        if(Auth::check()){
+            $id = $request->id;
+            \App\Tweets::destroy($id);
+            return redirect('/tweets');
+        }
+
     }
 
     public function viewTweet(){
