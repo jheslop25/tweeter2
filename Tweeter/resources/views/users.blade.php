@@ -25,7 +25,7 @@
 this is a list of tweeter users:
 @foreach ($users as $user)
 <h3>{{$user->name}}</h3>
-<form action="/user/tweets" method="post">
+<form action="/user/{{$user->id}}" method="get">
     @csrf
 <button type="submit" name="userTweets" value="{{$user->name}}">See Tweets by {{$user->name}}</button>
 </form>

@@ -19,6 +19,7 @@
 @include('likes')
 @foreach ($comments as $comment)
     @include('comments.show')
+    @include('comments.edit')
 @endforeach
 
 @include('comments.create')
