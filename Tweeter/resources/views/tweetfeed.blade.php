@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
+@include('functions')
 @section('content')
-
-
 @foreach ($tweets as $tweet)
-<h5>{{$tweet->user_id}}</h5>
-<h6>{{$tweet->content}}</h6>
+<h5>user id: {{$tweet->user_id}}</h5>
+<h6>Content: {{$tweet->content}}</h6>
+<p>tweet id: {{$tweet->id}}</p>
+
 {{-- @php
     var_dump($tweet);
 @endphp --}}
@@ -23,17 +24,8 @@
     @csrf
     <button type="submit" name="id">View Tweet</button>
 </form>
-<form action="/tweets/likes" method="post">
-    @csrf
-<button type="submit" name="like" value="{{$tweet->tweet_id}}">Like This Tweet</button>
-</form>
+@include('likes')
+@include('comments.create')
 @endforeach
-<form action="/tweets/create" method="post">
-@csrf
-<input type="text" name="content" value="what's on your mind?">
-<button type="submit">publish your tweet!</button>
-</form>
-@error('content')
-<div class="alert alert-danger">{{ $message }}</div>
-@enderror
+@include('create')
 @endsection
