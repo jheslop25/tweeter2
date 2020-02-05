@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@include('functions')
 @section('content')
 @foreach ($tweets as $tweet)
 <h5>{{$tweet['user_id']}}</h5>
@@ -16,4 +16,11 @@
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 @endif
+@include('likes')
+@foreach ($comments as $comment)
+    @include('comments.show')
+@endforeach
+
+@include('comments.create')
+<a href="/tweets">Back to Tweet Feed</a>
 @endsection

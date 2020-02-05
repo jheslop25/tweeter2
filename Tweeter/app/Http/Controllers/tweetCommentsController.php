@@ -7,8 +7,19 @@ use Auth;
 
 class tweetCommentsController extends Controller
 {
-    public function createComment(){
+    public function createComment(Request $request){
         // verify input, AUTH, and passes values to model
+        if($request->validate([
+            'comment' => 'required | min:3 | max: 255',
+            'tweetId' => 'required'
+        ])){
+            $comment = new \App\Comments;
+            $comment->user_id = Auth::user()->id;
+            $comment->tweet_id = $request->tweetId;
+            $comment->content = $request->comment;
+            $comment->save();
+            return redirect("/tweets/view/$comment->tweet_id");
+        }
     }
 
     public function editComment(){

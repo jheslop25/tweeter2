@@ -12,7 +12,7 @@ class tweetsController extends Controller
         if(Auth::check()){
             $tweets = \App\Tweets::all();
 
-            return view('tweetfeed', ['tweets' => $tweets]);
+            return view('tweetfeed', ['tweets' => $tweets,]);
         }
     }
 
@@ -75,6 +75,14 @@ class tweetsController extends Controller
     public function viewTweet($id){
         // returns a view with a single tweet
         $tweets = \App\Tweets::find($id);
-        return view('editTweet', ['tweets' => [$tweets]]);
+        $comments = \App\Comments::where('tweet_id', $id)->get();
+        if(sizeof($comments) >0){
+            $userId = $comments[0]->user_id;
+            $user = \App\User::find($userId);
+            return view('editTweet', ['tweets' => [$tweets], 'comments' => $comments, 'user' => $user]);
+        } else {
+            return view('editTweet', ['tweets' => [$tweets], 'comments' => $comments]);
+        }
+
     }
 }

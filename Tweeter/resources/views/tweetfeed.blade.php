@@ -25,7 +25,8 @@
     <button type="submit" name="id">View Tweet</button>
 </form>
 @include('likes')
-@include('comments.create')
+{{-- @include('comments.show')
+@include('comments.create') --}}
 @endforeach
 @include('create')
 @endsection
