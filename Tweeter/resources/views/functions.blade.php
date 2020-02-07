@@ -8,4 +8,18 @@
         }
         return false;
     }
+    function checkFollowing($userToCheck, $follows){
+        foreach($follows as $follow){
+            if($follow->followed_id == $userToCheck){
+                return true;
+            }
+        }
+        return false;
+    }
+    function isUser($userToCheck, $authUser){
+        if($userToCheck == $authUser){
+            return true;
+        }
+        return false;
+    }
 @endphp

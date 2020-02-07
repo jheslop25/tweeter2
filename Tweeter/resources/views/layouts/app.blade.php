@@ -26,6 +26,11 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                @if(Auth::check())
+                <a class="navbar-brand" href="/tweets">Tweet Feed</a>
+                <a class="navbar-brand" href="/user/{{Auth::user()->id}}">My profile</a>
+                <a class="navbar-brand" href="/users">Discover Users</a>
+                @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

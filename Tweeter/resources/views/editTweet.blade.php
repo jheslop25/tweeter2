@@ -1,27 +1,38 @@
 @extends('layouts.app')
 @include('functions')
 @section('content')
+<div class="container">
 @foreach ($tweets as $tweet)
-<h5>{{$tweet['user_id']}}</h5>
-<h6>{{$tweet['content']}}</h6>
+    <div class="row">
+        <div class="col-sm-8">
+            <h5>{{$tweet['user_id']}}</h5>
+            <h6>{{$tweet['content']}}</h6>
+        </div>
+    </div>
+
 @endforeach
 @if (Auth::user()->id == $tweet['user_id'])
-<form action="/tweets/update" method="post">
-    @csrf
-<input type="number" name="tweet_id" value="{{$tweet['id']}}" readonly>
-<input type="text" name="content" value="{{$tweet['content']}}">
-    <button type="submit">edit your tweet!</button>
-    </form>
-    @error('content')
-    <div class="alert alert-danger">{{ $message }}</div>
-    @enderror
+@include('tweetComp.edit')
 @endif
-@include('likes')
-@foreach ($comments as $comment)
-    @include('comments.show')
-    @include('comments.edit')
-@endforeach
+    <div class="row">
+        <div class="col">
+        @include('likes')
+        </div>
+    </div>
+</div>
+<div class="container">
+    @foreach ($comments as $comment)
+        <div class="row">
+            <div class="col-*">
+                @include('comments.show')
+            </div>
+            <div class="col-*">
+                @include('comments.edit')
+            </div>
+        </div>
+    @endforeach
 
-@include('comments.create')
-<a href="/tweets">Back to Tweet Feed</a>
+    @include('comments.create')
+    <a href="/tweets">Back to Tweet Feed</a>
+</div>
 @endsection
