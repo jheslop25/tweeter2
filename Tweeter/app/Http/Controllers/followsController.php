@@ -40,6 +40,6 @@ class followsController extends Controller
         //var_dump($unfollow);
         \App\Follows::where('followed_id', $unfollow)->where('user_id', Auth::user()->id)->delete();
 
-        return redirect('/users');
+        return back();
     }
 }

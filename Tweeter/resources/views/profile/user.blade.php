@@ -1,14 +1,17 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-3">
-            <h5>User: {{$user[0]->name}}</h5>
+            <h5>@ {{$user[0]->name}}</h5>
         </div>
 
         @if(Auth::user()->name == $user[0]->name)
         {{-- if own profile display nothing --}}
         @elseif(checkFollowing($user[0]->id, $follows))
         {{-- if you already follow user show nothing --}}
-
+        <form action="/user/unfollow" method="post">
+            @csrf
+            <button class="btn btn-danger" type="submit" name="followedID" value="{{$user[0]->id}}">Unfollow {{$user[0]->name}}</button>
+            </form>
         @else
         <form class="col-sm-6 align-self-start" action="/user/follow" method="post">
             @csrf

@@ -17,7 +17,7 @@
 <h3>{{$user->name}}</h3>
 <form action="/user/{{$user->id}}" method="get">
     @csrf
-<button class="btn btn-primary" type="submit" name="userTweets" value="{{$user->name}}">See Tweets by {{$user->name}}</button>
+<button class="btn btn-primary" type="submit" name="userTweets" value="{{$user->name}}">Profile</button>
 </form>
 @if(checkFollowing($user->id, $follows))
 <p class="alert alert-light">you are already following this tweeter</p>

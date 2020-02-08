@@ -16,13 +16,13 @@ class likesController extends Controller
         $like->tweet_id = $tweetId;
 
         $like->save();
-        return redirect('/tweets');
+        return back();
     }
 
     public function removeLike(Request $request){
         // deletes like record from DB via model
         $tweetId = $request->like;
         \App\Likes::where('tweet_id', $tweetId)->where('user_id', Auth::user()->id)->delete();
-        return redirect('/tweets');
+        return back();
     }
 }

@@ -5,13 +5,8 @@
 @include('create')
 @foreach ($tweets as $tweet)
 <div class="card m-4 p-3">
-<h5>user id: {{$tweet->user_id}}</h5>
+<h5>@ {{getUserName($tweet->user_id)}}</h5>
 <h6>Content: {{$tweet->content}}</h6>
-<p>tweet id: {{$tweet->id}}</p>
-
-{{-- @php
-    var_dump($tweet);
-@endphp --}}
 @if (Auth::user()->id == $tweet->user_id)
     <form action="/tweets/goToEdit/{{$tweet->user_id}}" method="get">
         @csrf

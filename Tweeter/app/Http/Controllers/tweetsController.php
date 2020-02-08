@@ -9,21 +9,6 @@ class tweetsController extends Controller
 {
     public function showAllFollowed(){
         //shows all followed user's tweets
-        // if(Auth::check()){
-        //     $followed = \App\Follows::where('user_id', Auth::user()->id)->get('followed_id');
-        //     foreach($followed as $follow){
-        //         var_dump($follow->followed_id);
-        //     }
-        //     if(sizeof($followed)>0){
-        //         $id = $followed[1]->followed_id;
-        //         $tweets = \App\Tweets::where('user_id', $id)->get();
-        //         return view('tweetfeed', ['tweets' => $tweets,]);
-        //     }
-        //     //else {
-        //     //     return redirect('/');
-        //     // }
-        // }
-        //return redirect('/login');
         if(Auth::check()){
             $followed = \App\Follows::where('user_id', Auth::user()->id)->get();
             $tweets = [];

@@ -22,4 +22,14 @@
         }
         return false;
     }
+    function getUserName($tweetUserID){
+        $username = App\User::where('id', $tweetUserID)->get('name');
+
+        return $username[0]->name;
+    }
+    function getLikes($tweetId){
+        $likes = sizeOf(App\Likes::where('tweet_id', $tweetId)->get());
+
+        return $likes;
+    }
 @endphp

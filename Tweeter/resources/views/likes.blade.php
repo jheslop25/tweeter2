@@ -10,3 +10,7 @@
 <button class="btn btn-success m-2" type="submit" name="like" value="{{$tweet->id}}">Like</button>
 </form>
 @endif
+<p>Likes: {{getLikes($tweet->id)}}</p>
+{{-- @php
+    var_dump(getLikes($tweet->id));
+@endphp --}}
