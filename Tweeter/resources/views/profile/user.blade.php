@@ -4,9 +4,6 @@
             <h5>User: {{$user[0]->name}}</h5>
         </div>
 
-        @php
-            var_dump($user[0]->id);
-        @endphp
         @if(Auth::user()->name == $user[0]->name)
         {{-- if own profile display nothing --}}
         @elseif(checkFollowing($user[0]->id, $follows))

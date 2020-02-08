@@ -10,6 +10,9 @@
 @else
 <p class="h4">Discover Tweeters to Follow!</p>
 @foreach ($users as $user)
+@if(isUser($user->name, Auth::user()->name))
+
+@else
 <div class="card m-3 p-3">
 <h3>{{$user->name}}</h3>
 <form action="/user/{{$user->id}}" method="get">
@@ -22,13 +25,12 @@
 @csrf
 <button class="btn btn-danger" type="submit" name="followedID" value="{{$user->id}}">Unfollow {{$user->name}}</button>
 </form>
-@elseif(isUser($user->name, Auth::user()->name))
-
 @else
 <form action="/user/follow" method="post">
     @csrf
 <button class="btn btn-success my-2" type="submit" name="followId" value="{{$user->id}}">Follow {{$user->name}}</button>
 </form>
+@endif
 @endif
 </div>
 @endforeach

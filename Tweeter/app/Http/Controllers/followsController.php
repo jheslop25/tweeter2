@@ -31,7 +31,7 @@ class followsController extends Controller
 
         $relationship->save();
 
-        return redirect('/users');
+        return back();
     }
 
     public function unfollowUser(Request $request){
