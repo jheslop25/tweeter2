@@ -1,8 +1,24 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <h5>User: {{$user[0]->name}}</h5>
         </div>
+
+        @php
+            var_dump($user[0]->id);
+        @endphp
+        @if(Auth::user()->name == $user[0]->name)
+        {{-- if own profile display nothing --}}
+        @elseif(checkFollowing($user[0]->id, $follows))
+        {{-- if you already follow user show nothing --}}
+
+        @else
+        <form class="col-sm-6 align-self-start" action="/user/follow" method="post">
+            @csrf
+            <button class="btn btn-primary" type="submit" name="followId" value="{{$user[0]->id}}">Follow</button>
+        </form>
+
+        @endif
 @if (Auth::user()->name == $user[0]->name)
         <div class="col-sm-8">
             <h6>Your email is: {{Auth::user()->email}}</h6>
@@ -34,10 +50,6 @@
         <form class="col-sm-3 align-self-center my-3 mb-5 ml-3" action="/user/destroy/{{Auth::user()->id}}" method="get">
             @csrf
             <button class="btn btn-danger" type="submit">Delete My Account</button>
-        </form>
-        <form class="col-sm-6 align-self-center  my-3 mb-5" action="/user/follow">
-            @csrf
-            <button class="btn btn-primary" type="submit" name="FolowId" value="{{$user[0]->user_id}}">Follow</button>
         </form>
     </div>
 

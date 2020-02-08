@@ -10,12 +10,14 @@ class profileController extends Controller
     public function showUser($id){
         //shows user profile
         //get user details
-        $user = \App\User::where('id', $id)->get('name');
+        $user = \App\User::where('id', $id)->get();
         //get all user tweets
         //var_dump($user);
         $tweets = \App\Tweets::where('user_id', $id)->get();
+        // check follows
+        $follows = \App\Follows::where('user_id', Auth::user()->id)->get();
         //return view
-        return view('profile', ['tweets' => $tweets, 'user' => $user]);
+        return view('profile', ['tweets' => $tweets, 'user' => $user, 'follows' => $follows]);
     }
 
     public function updateUser(Request $request){

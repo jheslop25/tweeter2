@@ -15,10 +15,12 @@ class tweetsController extends Controller
                 $id = $followed[0]->followed_id;
                 $tweets = \App\Tweets::where('user_id', $id)->get();
                 return view('tweetfeed', ['tweets' => $tweets,]);
-            } else {
-                return redirect('/users');
             }
+            //else {
+            //     return redirect('/');
+            // }
         }
+        return redirect('/login');
     }
 
     public function createTweet(Request $request){

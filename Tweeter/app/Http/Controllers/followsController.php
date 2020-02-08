@@ -20,6 +20,7 @@ class followsController extends Controller
     }
 
     public function followUser(Request $request){
+        //debug_log('in follow user');
         // adds follow record to DB via model
         $userToFollow = $request->followId;
         //var_dump($request->followId);
