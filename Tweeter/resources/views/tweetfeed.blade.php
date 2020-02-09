@@ -3,6 +3,7 @@
 @include('functions')
 @section('content')
 @include('create')
+<div class="container mb-5">
 @foreach ($tweets as $tweet)
 <div class="card m-4 p-3">
 <h5>@ {{getUserName($tweet->user_id)}}</h5>
@@ -26,4 +27,5 @@
 @include('comments.create') --}}
 </div>
 @endforeach
+</div>
 @endsection

@@ -2,10 +2,13 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-3 mb-3">
+            <img class="card img-fluid" src="{{ url('/logo.png')}}" alt="The Great Ironic Eagle">
+        </div>
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">{{ __('Welcome To Tweeter! Please Login.') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">

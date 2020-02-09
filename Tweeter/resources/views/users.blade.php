@@ -8,7 +8,7 @@
 @guest
 <p>please login</p>
 @else
-<p class="h4">Discover Tweeters to Follow!</p>
+<p class="h4 ml-3">Discover Tweeters to Follow!</p>
 @foreach ($users as $user)
 @if(isUser($user->name, Auth::user()->name))
 

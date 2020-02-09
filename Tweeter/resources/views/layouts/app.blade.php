@@ -21,15 +21,15 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm sticky-top">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand text-light" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 @if(Auth::check())
-                <a class="navbar-brand" href="/tweets">Tweet Feed</a>
-                <a class="navbar-brand" href="/user/{{Auth::user()->id}}">My profile</a>
-                <a class="navbar-brand" href="/users">Discover Users</a>
+                <a class="navbar-brand text-light" href="/tweets">Tweet Feed</a>
+                <a class="navbar-brand text-light" href="/user/{{Auth::user()->id}}">My profile</a>
+                <a class="navbar-brand text-light" href="/users">Discover Users</a>
                 @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -46,21 +46,21 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link text-light" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link text-light" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <li class="nav-item dropdown bg-primary">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                <div class="dropdown-menu bg-primary dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item text-light" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -77,9 +77,10 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4" style="min-height: 80vh;">
             @yield('content')
         </main>
+        <div class="navbar navbar-expand-md navbar-light bg-primary shadow-sm mt-5">@include('footer')</div>
     </div>
 </body>
 </html>
