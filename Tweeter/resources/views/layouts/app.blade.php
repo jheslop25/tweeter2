@@ -77,7 +77,7 @@
             </div>
         </nav>
 
-        <main class="py-4" style="min-height: 80vh;">
+        <main class="py-4 row align-items-start" style="min-height: 80vh;">
             @yield('content')
         </main>
         <div class="navbar navbar-expand-md navbar-light bg-primary shadow-sm mt-5">@include('footer')</div>
