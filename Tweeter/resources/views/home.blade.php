@@ -15,6 +15,7 @@
                     @endif
 
                     You are logged in!
+                    <img class="img-fluid" src="{{ url('/logo.png')}}" alt="The Great Ironic Eagle">
                 </div>
             </div>
         </div>

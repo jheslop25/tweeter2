@@ -1,1 +1,2 @@
-<p class="h6">@ {{getUserName($comment->user_id)}} <br> {{$comment->content}}</p>
+<p class="h6 text-muted">@ {{getUserName($comment->user_id)}} <br></p>
+<p class="h5"> {{$comment->content}}</p>

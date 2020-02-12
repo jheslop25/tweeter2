@@ -10,7 +10,7 @@
         {{-- if you already follow user show nothing --}}
         <form action="/user/unfollow" method="post">
             @csrf
-            <button class="btn btn-danger" type="submit" name="followedID" value="{{$user[0]->id}}">Unfollow {{$user[0]->name}}</button>
+            <button class="btn btn-danger ml-3" type="submit" name="followedID" value="{{$user[0]->id}}">Unfollow {{$user[0]->name}}</button>
             </form>
         @else
         <form class="col-sm-6 align-self-start" action="/user/follow" method="post">
@@ -19,23 +19,25 @@
         </form>
 
         @endif
-@if (Auth::user()->name == $user[0]->name)
-        <div class="col-sm-8">
-            <h6>Your email is: {{Auth::user()->email}}</h6>
-        </div>
+
     </div>
-    <div class="card p-2">
-        <form class="row" action="/user/edit" method="post">
+@if (Auth::user()->name == $user[0]->name)
+        {{-- <div class="col-sm-8">
+            <h6>Your email is: {{Auth::user()->email}}</h6>
+        </div> --}}
+
+    <div class="card p-2 my-2">
+        <form class="row " action="/user/edit" method="post">
             @csrf
-            <div class="col-sm">
+            <div class="col-sm-8 col-md-8 col-lg-8">
                 <p class="h6 text-muted">Update your name</p>
                 <input class="form-control" type="text" name="name" value="{{$user[0]->name}}">
             </div>
-            <div class="col-sm">
+            <div class="col-sm-8 col-md-8 col-lg-8">
                 <p class="h6 text-muted">Update your email</p>
                 <input class="form-control" type="text" name="email" value="{{Auth::user()->email}}"><br>
             </div>
-            <div class="col-sm align-self-center">
+            <div class="col-sm-8 col-md-8 col-lg-8">
                 <button class="btn btn-dark" type="submit">Update Account</button>
             </div>
         </form>
@@ -45,13 +47,17 @@
         @error('email')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
-    </div>
-    <div class="row">
-        <form class="col-sm-3 align-self-center my-3 mb-5 ml-3" action="/user/destroy/{{Auth::user()->id}}" method="get">
+        <form class="my-2" action="/user/destroy/{{Auth::user()->id}}" method="get">
             @csrf
             <button class="btn btn-danger" type="submit">Delete My Account</button>
         </form>
     </div>
+    {{-- <div class="row">
+        <form class="col-sm-3 align-self-center my-3 mb-5 ml-3" action="/user/destroy/{{Auth::user()->id}}" method="get">
+            @csrf
+            <button class="btn btn-danger" type="submit">Delete My Account</button>
+        </form>
+    </div> --}}
 
 @endif
 </div>

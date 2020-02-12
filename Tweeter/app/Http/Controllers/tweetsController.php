@@ -28,6 +28,8 @@ class tweetsController extends Controller
 
 
                 return view('tweetfeed', ['tweets' => $tweets,]);
+            } else {
+                return redirect('/users');
             }
 
         }

@@ -4,7 +4,7 @@
 <input class="form-control" type="text" name="comment" value="{{$comment->content}}">
 <input type="number" name="tweetId" value="{{$tweet->id}}" readonly class="d-none">
 <input type="number" name="commentId" value="{{$comment->id}}" readonly class="d-none">
-    <button class="btn btn-dark m-2" type="submit">Edit comment</button>
+    <button class="btn btn-dark m-2 mt-3" type="submit">Edit comment</button>
     @error('comment')
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center align-items-center">
-        <div class="col-md-3 mb-3">
+        <div class="col-md-3 m-3">
             <img class="card img-fluid" src="{{ url('/logo.png')}}" alt="The Great Ironic Eagle">
         </div>
         <div class="col-md-8">

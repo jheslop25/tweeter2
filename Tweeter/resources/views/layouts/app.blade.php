@@ -19,17 +19,18 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
+<body class="d-grid min-vh-100">
+    <div id="app" class="main-container-height-87">
         <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm sticky-top">
             <div class="container">
+                @if(Auth::check())
+                <a class="navbar-brand text-light" href="/tweets">News Feed</a>
+                <a class="navbar-brand text-light" href="/user/{{Auth::user()->id}}">My profile</a>
+                <a class="navbar-brand text-light" href="/users">Discover</a>
+                @else
                 <a class="navbar-brand text-light" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                @if(Auth::check())
-                <a class="navbar-brand text-light" href="/tweets">Tweet Feed</a>
-                <a class="navbar-brand text-light" href="/user/{{Auth::user()->id}}">My profile</a>
-                <a class="navbar-brand text-light" href="/users">Discover Users</a>
                 @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -77,10 +78,12 @@
             </div>
         </nav>
 
-        <main class="py-4 row align-items-start" style="min-height: 80vh;">
-            @yield('content')
+        <main class="py-4">
+            <div>
+                @yield('content')
+            </div>
         </main>
-        <div class="navbar navbar-expand-md navbar-light bg-primary shadow-sm mt-5">@include('footer')</div>
     </div>
+    <div class="navbar navbar-expand-md navbar-light bg-primary shadow-sm mt-5 align-self-end">@include('footer')</div>
 </body>
 </html>
