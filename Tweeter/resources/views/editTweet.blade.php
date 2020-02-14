@@ -5,7 +5,7 @@
 @foreach ($tweets as $tweet)
     <div class="card mb-4 p-3">
         <div class="col-sm-8">
-            <h4 class="text-muted">@ {{getUserName($tweet['user_id'])}}</h4>
+        <a href='/user/{{$tweet['user_id']}}' class="text-muted">@ {{getUserName($tweet['user_id'])}}</a>
             <h5>{{$tweet['content']}}</h5>
             <div class="row">
                 <div class="col">

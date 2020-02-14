@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
 @foreach ($tweets as $tweet)
 <div class="col-10 col-md-5 col-lg-3 card m-4 p-3">
-<h5>@ {{getUserName($tweet->user_id)}}</h5>
+<a href="/user/{{$tweet->user_id}}">@ {{getUserName($tweet->user_id)}}</a>
 <h6>Content: {{$tweet->content}}</h6>
 @if (Auth::user()->id == $tweet->user_id)
     <form action="/tweets/goToEdit/{{$tweet->user_id}}" method="get">

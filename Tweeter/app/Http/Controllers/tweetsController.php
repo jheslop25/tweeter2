@@ -46,7 +46,7 @@ class tweetsController extends Controller
         $tweet->content = $request->content;
         $tweet->save();
 
-        return redirect('/tweets');
+        return back();
         }
     }
 
@@ -56,7 +56,9 @@ class tweetsController extends Controller
             //var_dump($id);
             $tweets = \App\Tweets::find($id);
             //var_dump($tweets);
-            return view('editTweet', ['tweets' => [$tweets]]);
+            $comments = \App\Comments::where('tweet_id', $id)->get();
+
+            return view('editTweet', ['tweets' => [$tweets], 'comments' => $comments]);
 
         } else {
             return redirect('/tweets');
@@ -77,7 +79,7 @@ class tweetsController extends Controller
 
         $tweet->save();
 
-        return redirect('/tweets');
+        return back();
         }
 
     }
@@ -87,7 +89,7 @@ class tweetsController extends Controller
         if(Auth::check()){
             $id = $request->id;
             \App\Tweets::destroy($id);
-            return redirect('/tweets');
+            return back();
         }
 
     }
