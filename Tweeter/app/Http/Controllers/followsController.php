@@ -12,6 +12,10 @@ class followsController extends Controller
         if(Auth::check()){
             $follows = \App\Follows::where('user_id', Auth::user()->id)->get();
             //var_dump($follows);
+            if(sizeof($follows) <=0 ){
+                $msg = 'To see tweets, please follow some Tweeters';
+                return view('users', ['users' => $users, 'follows' => $follows, 'msg' => $msg]);
+            }
             return view('users', ['users' => $users, 'follows' => $follows]);
         } else {
             return redirect('/home');

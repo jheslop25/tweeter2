@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return redirect('/login');
 });
@@ -49,10 +51,12 @@ Route::post('/tweets/unlike', 'likesController@removeLike');
 
 // Begin Routes to ProfileController
 
-Route::get('/user/{user_id}', 'profileController@showUser');
+Route::get('/user/{user_id}', 'profileController@showUser'); //a better design choise here would be to use /users/{user_id} since this presents fewer conflict scenearios.
 
 
 Route::post('/user/edit', 'profileController@updateUser');
+
+Route::post('/user/photo', 'profileController@uploadPhoto');
 
 //Begin Routes to profileDestroyController
 

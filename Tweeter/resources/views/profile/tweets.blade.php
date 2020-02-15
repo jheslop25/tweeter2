@@ -2,7 +2,7 @@
 @foreach ($tweets as $tweet)
 <div class="col-sm-6 col-md-3 card my-3 mx-3 p-3">
     <div class="card-body">
-    <h4 class="card-title text-muted">@ {{$user[0]->name}}</h4>
+    <h4 class="card-title text-muted">@ {{$user[0]->name}} <img class="img-fluid" style="width: 30px;" src="{{ url('/logo.png')}}" alt="The Great Ironic Eagle"></h4>
     <h5 class="card-text">{{$tweet->content}}</h5>
     </div>
     <div class="btn-group" role="group">
@@ -20,6 +20,32 @@
             @csrf
             <button class="btn btn-primary m-1" type="submit" name="id">View</button>
         </form>
+    </div>
+    <div class="container">
+        {{-- @php
+        var_dump($comments[0][0][0]->content);
+        @endphp --}}
+        @foreach ($comments[0] as $comment)
+
+                    @foreach ($comment as $content)
+
+                        @if($content->tweet_id == $tweet->id)
+                        <div class="card mb-3 p-3">
+                        <a href="/user/{{$content->user_id}}">@ {{getUserName($content->user_id)}}<img class="img-fluid" style="width: 30px;" src="{{ url('/logo.png')}}" alt="The Great Ironic Eagle"></a>
+                        <p>{{$content->content}}</p>
+                        </div>
+                        @endif
+
+                    @endforeach
+
+                <div class="col-*">
+                    {{-- @include('comments.edit') --}}
+                </div>
+
+        @endforeach
+
+        {{-- @include('comments.create') --}}
+        <a href="/tweets">Back to Tweet Feed</a>
     </div>
 </div>
 @endforeach

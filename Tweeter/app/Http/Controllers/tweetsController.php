@@ -10,8 +10,9 @@ class tweetsController extends Controller
     public function showAllFollowed(){
         //shows all followed user's tweets
         if(Auth::check()){
-            $followed = \App\Follows::where('user_id', Auth::user()->id)->get();
+            $followed = \App\Follows::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
             $tweets = [];
+            $allComments = [];
             if(sizeof($followed)>0){
                 foreach($followed as $follow){
                     $id = $follow->followed_id;
@@ -23,11 +24,14 @@ class tweetsController extends Controller
                     // var_dump($tweet->user_id);
                     // var_dump($tweet->content);
                     array_push($tweets, $tweet);
+                    $id = $tweet->id;
+                    $comments = \App\Comments::where('tweet_id', $id)->get();
+                    array_push($allComments, $comments);
                 }
             }
 
 
-                return view('tweetfeed', ['tweets' => $tweets,]);
+                return view('tweetfeed', ['tweets' => $tweets, 'comments' => [$allComments]]);
             } else {
                 return redirect('/users');
             }

@@ -4,20 +4,37 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 
 class profileController extends Controller
 {
     public function showUser($id){
+
+       if(Auth::check()){
         //shows user profile
         //get user details
         $user = \App\User::where('id', $id)->get();
         //get all user tweets
-        //var_dump($user);
+        //var_dump($user[0]->profile_photo);
         $tweets = \App\Tweets::where('user_id', $id)->get();
+        //set comments array to empty
+        $allComments = [];
+        //get comments
+
+        foreach($tweets as $tweet){
+            $id = $tweet->id;
+            $comments = \App\Comments::where('tweet_id', $id)->get();
+            array_push($allComments, $comments);
+        }
+
         // check follows
         $follows = \App\Follows::where('user_id', Auth::user()->id)->get();
-        //return view
-        return view('profile', ['tweets' => $tweets, 'user' => $user, 'follows' => $follows]);
+        //get profile pic path
+        $profilePic = asset($user[0]->profile_photo);
+        //var_dump($profilePic);
+        //return view 'profilePic' => $profilePic
+        return view('profile', ['tweets' => $tweets, 'user' => $user, 'follows' => $follows, 'profilePic' => $profilePic, 'comments' => [$allComments]]);
+        }
     }
 
     public function updateUser(Request $request){
@@ -32,7 +49,19 @@ class profileController extends Controller
             $user->email = $request->email;
             $user->save();
             return redirect('/user/' . Auth::user()->id);
+        } else {
+            return redirect('/login');
         }
+    }
+
+    public function uploadPhoto(Request $request){
+        //var_dump($request->myPhoto);
+        $path = $request->file('myPhoto')->store('/public/photos');
+        $id = Auth::user()->id;
+        $user = \App\User::find($id);
+        $user->profile_photo = $path;
+        $user->save();
+        return back();
     }
 
 }

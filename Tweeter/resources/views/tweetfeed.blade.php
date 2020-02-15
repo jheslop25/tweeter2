@@ -7,8 +7,9 @@
     <div class="row justify-content-center">
 @foreach ($tweets as $tweet)
 <div class="col-10 col-md-5 col-lg-3 card m-4 p-3">
-<a href="/user/{{$tweet->user_id}}">@ {{getUserName($tweet->user_id)}}</a>
+<a href="/user/{{$tweet->user_id}}">@ {{getUserName($tweet->user_id)}}<img class="img-fluid" style="width: 30px;" src="{{ url('/logo.png')}}" alt="The Great Ironic Eagle"></a>
 <h6>Content: {{$tweet->content}}</h6>
+<p class="text-muted">{{$tweet->created_at}}</p>
 @if (Auth::user()->id == $tweet->user_id)
     <form action="/tweets/goToEdit/{{$tweet->user_id}}" method="get">
         @csrf
@@ -18,6 +19,16 @@
         @csrf
         <button class="btn btn-dark m-2" type="submit" name="id" value="{{$tweet->id}}" onclick="Are you sure?">Delete</button>
     </form>
+@else
+    <form action="/retweet" method="post">
+    @csrf
+    <input type="text" name='tweet_id' value="{{$tweet->id}}" class="d-none" readonly>
+    <input type="text" name="user_id" value="{{$tweet->user_id}}" class="d-none" readonly>
+    <input type="text" name="content" value="{{$tweet->content}}" class="d-none" readonly>
+    <input type="text" name="created_at" value="{{$tweet->created_at}}" class="d-none" readonly>
+    <button type="submit" class="btn btn-success">Retweet</button>
+    </form>
+
 @endif
 <form action="/tweets/view/{{$tweet->id}}" method="get">
     @csrf
@@ -26,6 +37,24 @@
 @include('likes')
 {{-- @include('comments.show')
 @include('comments.create') --}}
+@foreach ($comments[0] as $comment)
+
+                    @foreach ($comment as $content)
+
+                        @if($content->tweet_id == $tweet->id)
+                        <div class="card mb-3 p-3">
+                        <a href="/user/{{$content->user_id}}">@ {{getUserName($content->user_id)}}</a>
+                        <p>{{$content->content}}</p>
+                        </div>
+                        @endif
+
+                    @endforeach
+
+                <div class="col-*">
+                    {{-- @include('comments.edit') --}}
+                </div>
+
+        @endforeach
 </div>
 @endforeach
     </div>

@@ -3,6 +3,7 @@
 @section('content')
     @include('functions')
     @include('profile.user')
+    @include('profile.upload')
 @if(isUser($user[0]->name, Auth::user()->name))
     @include('profile.createTweet')
 @endif
