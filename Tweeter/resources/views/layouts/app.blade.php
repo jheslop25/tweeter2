@@ -24,17 +24,17 @@
         <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm sticky-top">
             <div class="container">
                 @if(Auth::check())
-                <a class="navbar-brand text-light" href="/tweets">News Feed</a>
-                <a class="navbar-brand text-light" href="/user/{{Auth::user()->id}}">My profile</a>
-                <a class="navbar-brand text-light" href="/users">Discover</a>
+                    <a class="navbar-brand text-light" href="/tweets">News Feed</a>
+                    <a class="navbar-brand text-light" href="/user/{{Auth::user()->id}}">My profile</a>
+                    <a class="navbar-brand text-light" href="/users">Discover</a>
                 @else
-                <a class="navbar-brand text-light" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+                    <a class="navbar-brand text-light" href="{{ url('/') }}">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
                 @endif
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
