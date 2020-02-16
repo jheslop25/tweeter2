@@ -113,4 +113,18 @@ class tweetsController extends Controller
         }
 
     }
+
+    public function retweet(Request $request){
+        if(Auth::check()){
+            $retweet = new \App\Tweets;
+            $retweet->user_id = Auth::user()->id;
+            $retweet->content = $request->content;
+            $retweet->orig_tweeter_name = $request->name;
+            $retweet->orig_created_at = $request->created_at;
+
+            $retweet->save();
+
+            return back();
+        }
+    }
 }

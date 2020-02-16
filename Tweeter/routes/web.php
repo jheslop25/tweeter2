@@ -35,6 +35,8 @@ Route::post('/tweets/destroy', 'tweetsController@destroyTweet');
 
 Route::get('/tweets/view/{tweet_id}', 'tweetsController@viewTweet');
 
+Route::post('/retweet', 'tweetsController@retweet');
+
 //Begin Routes to tweetsCommentController
 
 Route::post('/tweets/comment/create', 'tweetCommentsController@createComment');

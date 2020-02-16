@@ -1,7 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-3">
+        @if($user[0]->profile_photo)
         <img class="img-fluid" src="<?php echo(asset($profilePic));?>" alt="profile photo">
+        @endif
             <h5>@ {{$user[0]->name}}<img class="img-fluid" style="width: 30px;" src="{{ url('/logo.png')}}" alt="The Great Ironic Eagle"></h5>
         </div>
         @if(Auth::user()->name == $user[0]->name)

@@ -3,6 +3,9 @@
 <div class="col-sm-6 col-md-3 card my-3 mx-3 p-3">
     <div class="card-body">
     <h4 class="card-title text-muted">@ {{$user[0]->name}} <img class="img-fluid" style="width: 30px;" src="{{ url('/logo.png')}}" alt="The Great Ironic Eagle"></h4>
+    @if ($tweet->orig_tweeter_name)
+    <p>Retweet from @ {{$tweet->orig_tweeter_name}}<img class="img-fluid" style="width: 30px;" src="{{ url('/logo.png')}}" alt="The Great Ironic Eagle"></p>
+    @endif
     <h5 class="card-text">{{$tweet->content}}</h5>
     </div>
     <div class="btn-group" role="group">

@@ -13,7 +13,10 @@ class UpdateTweetsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('tweets', function (Blueprint $table) {
+            $table->string('orig_tweeter_name')->nullable();
+            $table->timestamp('orig_created_at')->nullable();
+        });
     }
 
     /**
@@ -23,6 +26,9 @@ class UpdateTweetsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('tweets', function (Blueprint $table) {
+            $table->dropColumn('orig_tweeter_name');
+            $table->dropColumn('orig_created_at');
+        });
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class profileController extends Controller
 {
@@ -56,8 +57,12 @@ class profileController extends Controller
 
     public function uploadPhoto(Request $request){
         //var_dump($request->myPhoto);
-        $path = $request->file('myPhoto')->store('/public/photos');
+        $request->file('myPhoto')->storeAs('/public/photos', Auth::user()->name);
         $id = Auth::user()->id;
+        $name = Auth::user()->name;
+        var_dump($name);
+        //Storage::putFileAs('photos', new File("storage/app/public/photos/$name"), $name);
+        $path = 'storage/photos/'.$name;
         $user = \App\User::find($id);
         $user->profile_photo = $path;
         $user->save();
