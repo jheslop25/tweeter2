@@ -1,6 +1,6 @@
 <div class="container my-3">
     <div class="card p-3">
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col">
                 <div>
                     <div >
@@ -27,7 +27,7 @@
             </div>
 
                 @if (Auth::user()->name == $user[0]->name)
-                <div class="col">
+                <div class="col-sm">
                     <div class="card p-2 m-2">
                         <form class="row " action="/user/edit" method="post">
                             @csrf
