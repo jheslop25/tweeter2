@@ -64,7 +64,7 @@ Route::post('/user/photo', 'profileController@uploadPhoto');
 
 Route::get('/user/destroy/{user_id}', 'profileDestroyController@beginDestroy');
 
-Route::post('/user/destroy/confirm', 'profileDestroyController@confirmDestroy');
+Route::post('/user/destroy/confirm/{user_id}', 'profileDestroyController@confirmDestroy');
 
 //Begin Routes To FollowsController
 
