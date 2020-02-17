@@ -13,7 +13,7 @@ class tweetsController extends Controller
             $followed = \App\Follows::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
             $tweets = [];
             $allComments = [];
-            if(sizeof($followed)>0){
+            if(sizeOf($followed)>0){
                 foreach($followed as $follow){
                     $id = $follow->followed_id;
                     //var_dump($id);
@@ -42,15 +42,17 @@ class tweetsController extends Controller
 
     public function createTweet(Request $request){
         //verifies input, Auth, and passes tweet to model
-        if($request->validate([
-            'content' => 'required | min:3 | max:144'
-        ])){
-            $tweet = new \App\Tweets;
-        $tweet->user_id = Auth::user()->id;
-        $tweet->content = $request->content;
-        $tweet->save();
+        if(Auth::check()){
+            if($request->validate([
+                'content' => 'required | min:3 | max:144'
+            ])){
+                $tweet = new \App\Tweets;
+            $tweet->user_id = Auth::user()->id;
+            $tweet->content = $request->content;
+            $tweet->save();
 
-        return back();
+            return back();
+            }
         }
     }
 
@@ -71,27 +73,28 @@ class tweetsController extends Controller
 
     public function updateTweet(Request $request){
         //verifies input, Auth, and passes values to model
-        if($request->validate([
-            'content' => 'required | min:3 | max:144'
-        ])){
-        $id = $request->tweet_id;
-        var_dump($id);
-        $tweet = \App\Tweets::find($id);
+        if(Auth::user()->id == $request->user_id){
+            if($request->validate([
+                'content' => 'required | min:3 | max:144'
+            ])){
+            $id = $request->tweet_id;
+            var_dump($id);
+            $tweet = \App\Tweets::find($id);
 
-        var_dump($tweet);
-        $tweet->content = $request->content;
+            var_dump($tweet);
+            $tweet->content = $request->content;
 
-        $tweet->save();
+            $tweet->save();
 
-        return back();
+            return back();
+            }
         }
-
     }
 
     public function destroyTweet(Request $request){
         //verifies input, Auth, and passes instructions to model
-        if(Auth::check()){
-            $id = $request->id;
+        $id = $request->id;
+        if(Auth::user()->id == \App\Tweets::find($id)->user_id){
             \App\Tweets::destroy($id);
             return back();
         }
