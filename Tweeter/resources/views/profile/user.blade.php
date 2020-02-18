@@ -8,6 +8,7 @@
                             <img class="img-thumbnail" src="<?php echo(asset($profilePic));?>" alt="profile photo">
                         @endif
                         <p class="h3 m-3">@ {{$user[0]->name}}<img class="img-fluid" style="width: 30px;" src="{{ url('/logo.png')}}" alt="The Great Ironic Eagle"></p>
+                        <p class="ml-3 text-muted">Followers: {{sizeOf(\App\Follows::where('followed_id', $user[0]->id)->get())}}</p>
                     </div>
                         @if(Auth::user()->name == $user[0]->name)
                             {{-- if own profile display nothing --}}

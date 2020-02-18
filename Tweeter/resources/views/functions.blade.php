@@ -32,4 +32,15 @@
 
         return $likes;
     }
+
+    function getFollows($follows, $user_id){
+        $total = [];
+        foreach($follows as $follow){
+            if($follow->followed_id == $user_id){
+                array_push($total, $follow);
+            }
+        }
+
+        return $total;
+    }
 @endphp

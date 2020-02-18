@@ -9,7 +9,9 @@
                     <h5>{{$tweet['content']}}</h5>
                     <div class="row">
                         <div class="col">
+                            @if(Auth::user()->id != $tweet['user_id'])
                             @include('likes')
+                            @endif
                         </div>
                     </div>
                 </div>
