@@ -57,16 +57,20 @@ class profileController extends Controller
 
     public function uploadPhoto(Request $request){
         //var_dump($request->myPhoto);
-        $request->file('myPhoto')->storeAs('/public/photos', Auth::user()->name);
-        $id = Auth::user()->id;
-        $name = Auth::user()->name;
-        var_dump($name);
-        //Storage::putFileAs('photos', new File("storage/app/public/photos/$name"), $name);
-        $path = 'storage/photos/'.$name;
-        $user = \App\User::find($id);
-        $user->profile_photo = $path;
-        $user->save();
-        return back();
+        if($request->file()){
+            $request->file('myPhoto')->storeAs('/public/photos', Auth::user()->name);
+            $id = Auth::user()->id;
+            $name = Auth::user()->name;
+            var_dump($name);
+            //Storage::putFileAs('photos', new File("storage/app/public/photos/$name"), $name);
+            $path = 'storage/photos/'.$name;
+            $user = \App\User::find($id);
+            $user->profile_photo = $path;
+            $user->save();
+            return back();
+        } else {
+            return back();
+        }
     }
 
 }
