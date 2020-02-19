@@ -16,6 +16,9 @@
 
             @else
                     <div class="col-sm-6 col-md-4 card m-3 p-3">
+                        @if($user->profile_photo)
+                    <img class="img-fluid" src="{{$user->profile_photo}}" alt="profile photo">
+                        @endif
                         <h3>@ {{$user->name}}<img class="img-fluid" style="width: 30px;" src="{{ url('/logo.png')}}" alt="The Great Ironic Eagle"></h3>
                         <form action="/user/{{$user->id}}" method="get">
                             @csrf
