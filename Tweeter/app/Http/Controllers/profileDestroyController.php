@@ -20,6 +20,9 @@ class profileDestroyController extends Controller
         if(Auth::user()->id == $user_id){ //may need to improve this auth later... will think through.
             $id = Auth::user()->id;
             \App\User::destroy($id);
+            \App\Tweets::where('user_id', $id)->delete();
+            \App\Follows::where('user_id', $id)->where('followed_id', $id)->delete();
+            \App\Comments::where('user_id', $id)->delete();
             return redirect('/home');
         } else {
             return redirect('/tweets');
