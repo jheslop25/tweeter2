@@ -51,6 +51,16 @@ class tweetsController extends Controller
             $tweet->content = $request->content;
             $tweet->save();
 
+            if($request->file()){
+                $getTweet = \App\Tweets::where('user_id', Auth::user()->id)->where('content', $request->content)->get();
+                $photoName = $getTweet[0]->id . 't_id' . $getTweet[0]->user_id . 'tweet_photo';
+                var_dump($photoName);
+                $request->file('myPhoto')->storeAs('/public/photos', $photoName);
+                $path = '/storage/photos/'. $photoName;
+                $getTweet[0]->tweet_photo = $path;
+                $getTweet[0]->save();
+            }
+
             return back();
             }
         }
@@ -124,6 +134,7 @@ class tweetsController extends Controller
             $retweet->content = $request->content;
             $retweet->orig_tweeter_name = $request->name;
             $retweet->orig_created_at = $request->created_at;
+            $retweet->tweet_photo = $request->tweet_photo;
 
             $retweet->save();
 

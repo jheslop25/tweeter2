@@ -12,6 +12,9 @@
                             <p>Retweet from @ {{$tweet->orig_tweeter_name}}<img class="img-fluid" style="width: 30px;" src="{{ url('/logo.png')}}" alt="The Great Ironic Eagle"></p>
                         @endif
                     <h6>{{$tweet->content}}</h6>
+                        @if($tweet->tweet_photo)
+                            <img class="img-fluid" style="width:200px" src="{{$tweet->tweet_photo}}" alt="dank memes">
+                        @endif
                     <p class="text-muted">{{$tweet->created_at->diffForHumans()}}</p>
                     <div class="row px-3">
                         @if(Auth::user()->id == $tweet->user_id)
@@ -30,6 +33,7 @@
                                 <input type="text" name="name" value="{{getUserName($tweet->user_id)}}" class="d-none" readonly>
                                 <input type="text" name="content" value="{{$tweet->content}}" class="d-none" readonly>
                                 <input type="text" name="created_at" value="{{$tweet->created_at}}" class="d-none" readonly>
+                            <input type="text" name="tweet_photo" value="{{$tweet->tweet_photo}}" class="d-none" readonly>
                                 <button type="submit" class="btn btn-secondary my-2">Retweet</button>
                             </form>
 

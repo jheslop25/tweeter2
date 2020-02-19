@@ -6,6 +6,9 @@
         @if ($tweet->orig_tweeter_name)
             <p>Retweet from @ {{$tweet->orig_tweeter_name}}<img class="img-fluid" style="width: 30px;" src="{{ url('/logo.png')}}" alt="The Great Ironic Eagle"></p>
         @endif
+        @if($tweet->tweet_photo)
+            <img class="img-fluid" style="width:200px" src="{{$tweet->tweet_photo}}" alt="dank memes">
+        @endif
         <h5 class="card-text">{{$tweet->content}}</h5>
     </div>
     <div class="btn-group ml-3 mb-2" role="group">

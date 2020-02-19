@@ -6,6 +6,9 @@
             <div class="card mb-4 p-3">
                 <div class="col-sm-8">
                     <a href='/user/{{$tweet['user_id']}}' class="text-muted">@ {{getUserName($tweet['user_id'])}}</a>
+                    @if($tweet['tweet_photo'])
+                        <img class="img-fluid" style="width:200px" src="{{$tweet['tweet_photo']}}" alt="dank memes">
+                    @endif
                     <h5>{{$tweet['content']}}</h5>
                     <div class="row">
                         <div class="col">

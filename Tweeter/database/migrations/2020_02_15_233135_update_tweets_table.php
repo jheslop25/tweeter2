@@ -16,6 +16,7 @@ class UpdateTweetsTable extends Migration
         Schema::table('tweets', function (Blueprint $table) {
             $table->string('orig_tweeter_name')->nullable();
             $table->timestamp('orig_created_at')->nullable();
+            $table->string('tweet_photo')->nullable();
         });
     }
 
