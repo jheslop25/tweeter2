@@ -14,7 +14,7 @@
 
 
 Route::get('/', function () {
-    return redirect('/login');
+    return view('home');
 });
 
 Auth::routes();
