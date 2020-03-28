@@ -1959,7 +1959,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Home"
+  name: "Home",
+  computed: {
+    getHead: function getHead() {
+      return this.$store.getters.getHeadline;
+    },
+    getSub: function getSub() {
+      return this.$store.getters.getSubHead;
+    },
+    getMarkOne: function getMarkOne() {
+      return this.$store.getters.getMarketingOne;
+    },
+    getMarkTwo: function getMarkTwo() {
+      return this.$store.getters.getMarketingTwo;
+    }
+  }
 });
 
 /***/ }),
@@ -38026,41 +38040,31 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { attrs: { id: "main" } }, [
+    _c("div", { staticClass: "m-3", attrs: { id: "headline" } }, [
+      _c("p", { staticClass: "h1 m-1" }, [_vm._v(_vm._s(_vm.getHead))]),
+      _vm._v(" "),
+      _c("p", { staticClass: "h4 m-1" }, [_vm._v(_vm._s(_vm.getSub))]),
+      _vm._v(" "),
+      _vm._m(0)
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "m-4", attrs: { id: "marketing" } }, [
+      _c("p", [_vm._v(_vm._s(_vm.getMarkOne))]),
+      _vm._v(" "),
+      _c("p", [_vm._v(_vm._s(_vm.getMarkTwo))])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "main" } }, [
-      _c("div", { staticClass: "m-3", attrs: { id: "headline" } }, [
-        _c("p", { staticClass: "h1 m-1" }, [_vm._v("FoShizzle")]),
-        _vm._v(" "),
-        _c("p", { staticClass: "h4 m-1" }, [_vm._v("for sh*ts and giggles")]),
-        _vm._v(" "),
-        _c("div", {}, [
-          _c("p", { staticClass: "btn btn-primary m-1" }, [_vm._v("sign-up")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "btn btn-primary m-1" }, [
-            _vm._v("but...why?")
-          ])
-        ])
-      ]),
+    return _c("div", {}, [
+      _c("p", { staticClass: "btn btn-primary m-1" }, [_vm._v("sign-up")]),
       _vm._v(" "),
-      _c("div", { staticClass: "m-4", attrs: { id: "marketing" } }, [
-        _c("p", [
-          _vm._v(
-            "FoShizzle is an app for you to connect with your closest friends, and share things for sh*ts and giggles. "
-          )
-        ]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "FoShizzle aspires to be a haven for the ridiculous, absurd, and comical. Freaks welcome, terrorists need not apply."
-          )
-        ])
-      ])
+      _c("p", { staticClass: "btn btn-primary m-1" }, [_vm._v("but...why?")])
     ])
   }
 ]
@@ -51309,18 +51313,13 @@ module.exports = function(module) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
 Vue.use(vuex__WEBPACK_IMPORTED_MODULE_0__["default"]);
-var appStore = new vuex__WEBPACK_IMPORTED_MODULE_0__["default"].Store({
-  //stoer options
+var store = new vuex__WEBPACK_IMPORTED_MODULE_0__["default"].Store({
+  //store options
   state: {
     //some data here
     headline: 'FoShizzle',
@@ -51332,30 +51331,27 @@ var appStore = new vuex__WEBPACK_IMPORTED_MODULE_0__["default"].Store({
   },
   actions: {//some actions here
   },
-  getters: {//some getters here
+  getters: {
+    //some getters here
+    getHeadline: function getHeadline(state) {
+      return state.headline;
+    },
+    getSubHead: function getSubHead(state) {
+      return state.subHead;
+    },
+    getMarketingOne: function getMarketingOne(state) {
+      return state.marketingOne;
+    },
+    getMarketingTwo: function getMarketingTwo(state) {
+      return state.marketingTwo;
+    }
   }
 });
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('Home', __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue")["default"]);
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
 var app = new Vue({
   el: '#app',
-  appStore: appStore
+  store: store
 });
 
 /***/ }),
