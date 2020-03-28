@@ -2001,7 +2001,14 @@ __webpack_require__.r(__webpack_exports__);
       //make axios call to create a like record.
       //update the dom to increment tweet likes
       console.log('you clicked the like button');
-      axios.post('/ajax/like', {
+      axios.post('/tweets/likes', {
+        tweetID: this.tweetid
+      }).then(function (response) {
+        console.log(response);
+      });
+    },
+    unlikeTweet: function unlikeTweet() {
+      axios.post('/ajax/unlike', {
         tweetID: this.tweetid
       }).then(function (response) {
         console.log(response);

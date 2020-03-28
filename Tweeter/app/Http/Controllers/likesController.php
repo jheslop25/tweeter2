@@ -10,7 +10,7 @@ class likesController extends Controller
     public function addLike(Request $request){
         // adds a like record to the DB via model
 
-        $tweetId = $request->like;
+        $tweetId = $request->tweetID;
         // var_dump($tweetId);
         $like = new \App\Likes;
         $like->user_id = Auth::user()->id;
@@ -28,6 +28,11 @@ class likesController extends Controller
     }
 
     public function ajaxLike(Request $request){
+        $tweetID = $request->tweetID;
+        return response($tweetID);
+    }
+
+    public function ajaxUnlike(Request $request){
         $tweetID = $request->tweetID;
         return response($tweetID);
     }
