@@ -42,6 +42,7 @@ const store = new Vuex.Store({
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('Home', require('./components/Home.vue').default);
+Vue.component('Like', require('./components/Like.vue').default);
 
 
 const app = new Vue({

@@ -6,10 +6,11 @@
                 <button class="btn btn-dark my-2" type="submit" name="like" value="{{$tweet->id}}">Unlike</button>
             </form>
         @else
-            <form class="col" action="/tweets/likes" method="post">
+            {{-- <form class="col" action="/tweets/likes" method="post">
                 @csrf
                 <button class="btn btn-success my-2" type="submit" name="like" value="{{$tweet->id}}">Like</button>
-            </form>
+            </form> --}}
+        <Like :tweetid={{$tweet->id}}>
         @endif
     </div>
 </div>

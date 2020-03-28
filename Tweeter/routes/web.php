@@ -73,3 +73,9 @@ Route::get('/users', 'followsController@showAllUsers');
 Route::post('/user/follow', 'followsController@followUser');
 
 Route::post('/user/unfollow', 'followsController@unfollowUser');
+
+//AJAX routes
+
+Route::post('/ajax/like', 'likesController@ajaxLike');
+
+Route::post('/ajax/unlike', 'likesController@ajaxUnLike');

@@ -84,6 +84,6 @@
             </div>
         </main>
     </div>
-    <div class="navbar navbar-expand-md navbar-light bg-primary shadow-sm mt-5 align-self-end">@include('footer')</div>
+    <div id="footer" class="navbar navbar-expand-md navbar-light bg-primary shadow-sm mt-5 align-self-end">@include('footer')</div>
 </body>
 </html>
