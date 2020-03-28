@@ -1993,11 +1993,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Like',
-  props: ['tweetid'],
+  props: ['tweetid', 'hasliked'],
+  data: function data() {
+    return {
+      displayCond: this.hasliked
+    };
+  },
   methods: {
     likeTweet: function likeTweet() {
+      var _this = this;
+
       //make axios call to create a like record.
       //update the dom to increment tweet likes
       console.log('you clicked the like button');
@@ -2005,13 +2013,19 @@ __webpack_require__.r(__webpack_exports__);
         tweetID: this.tweetid
       }).then(function (response) {
         console.log(response);
+        document.getElementById("likes-counter").innerHTML = 'you liked this tweet!';
+        _this.displayCond = false;
       });
     },
     unlikeTweet: function unlikeTweet() {
-      axios.post('/ajax/unlike', {
+      var _this2 = this;
+
+      axios.post('/tweets/unlike', {
         tweetID: this.tweetid
       }).then(function (response) {
         console.log(response);
+        document.getElementById("likes-counter").innerHTML = 'you unliked this tweet!';
+        _this2.displayCond = true;
       });
     }
   }
@@ -38131,9 +38145,17 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("p", { staticClass: "btn btn-primary", on: { click: _vm.likeTweet } }, [
-      _vm._v("Like")
-    ])
+    _vm.displayCond
+      ? _c(
+          "p",
+          { staticClass: "btn btn-success", on: { click: _vm.likeTweet } },
+          [_vm._v("Like")]
+        )
+      : _c(
+          "p",
+          { staticClass: "btn btn-danger", on: { click: _vm.unlikeTweet } },
+          [_vm._v("Unlike")]
+        )
   ])
 }
 var staticRenderFns = []

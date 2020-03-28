@@ -1,13 +1,19 @@
 <template>
     <div>
-        <p class="btn btn-primary" @click='likeTweet'>Like</p>
+        <p v-if="displayCond" class="btn btn-success" @click='likeTweet'>Like</p>
+        <p v-else class="btn btn-danger" @click="unlikeTweet">Unlike</p>
     </div>
 </template>
 
 <script>
     export default {
         name: 'Like',
-        props: ['tweetid'],
+        props: ['tweetid', 'hasliked'],
+        data(){
+            return {
+                displayCond: this.hasliked
+            }
+        },
         methods: {
             likeTweet: function(){
                 //make axios call to create a like record.
@@ -17,13 +23,17 @@
                     tweetID: this.tweetid
                 }).then(response => {
                     console.log(response);
+                    document.getElementById("likes-counter").innerHTML = 'you liked this tweet!';
+                    this.displayCond = false;
                 });
             },
             unlikeTweet: function(){
-                axios.post('/ajax/unlike', {
+                axios.post('/tweets/unlike', {
                     tweetID: this.tweetid
                 }).then(response => {
                     console.log(response);
+                    document.getElementById("likes-counter").innerHTML = 'you unliked this tweet!';
+                    this.displayCond = true;
                 })
             }
         }

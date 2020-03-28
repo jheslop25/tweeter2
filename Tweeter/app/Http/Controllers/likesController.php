@@ -17,14 +17,14 @@ class likesController extends Controller
         $like->tweet_id = $tweetId;
 
         $like->save();
-        return back();
+        return response($like);
     }
 
     public function removeLike(Request $request){
         // deletes like record from DB via model
-        $tweetId = $request->like;
+        $tweetId = $request->tweetID;
         \App\Likes::where('tweet_id', $tweetId)->where('user_id', Auth::user()->id)->delete();
-        return back();
+        return response($tweetId);
     }
 
     public function ajaxLike(Request $request){
