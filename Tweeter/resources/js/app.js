@@ -8,6 +8,24 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import Vuex from 'vuex';
+Vue.use(Vuex);
+
+const appStore = new Vuex.Store({
+    //stoer options
+    state: {
+        //some data here
+    },
+    mutations: {
+        //some mutations here
+    },
+    actions: {
+        //some actions here
+    },
+    getters: {
+        //some getters here
+    }
+})
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -29,5 +47,6 @@ Vue.component('Home', require('./components/Home.vue').default);
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    appStore
 });
