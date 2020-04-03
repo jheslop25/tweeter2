@@ -15,4 +15,4 @@
         @endif
     </div>
 </div>
-<p id="likes-counter" class="h6 col-12 text-muted mt-3">Likes: {{getLikes($tweet->id)}}</p>
+<p id="likes-counter" class="h6 col-12 text-muted mt-3"><LikeCounter tweetID="{{$tweet->id}}"/></p>

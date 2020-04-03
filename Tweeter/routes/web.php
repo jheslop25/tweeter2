@@ -51,6 +51,8 @@ Route::post('/tweets/likes', 'likesController@addLike');
 
 Route::post('/tweets/unlike', 'likesController@removeLike');
 
+Route::post('/likes', 'likesController@get');
+
 // Begin Routes to ProfileController
 
 Route::get('/user/{user_id}', 'profileController@showUser'); //a better design choise here would be to use /users/{user_id} since this presents fewer conflict scenearios.

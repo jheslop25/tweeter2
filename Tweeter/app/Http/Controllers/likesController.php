@@ -27,13 +27,8 @@ class likesController extends Controller
         return response($tweetId);
     }
 
-    public function ajaxLike(Request $request){
-        $tweetID = $request->tweetID;
-        return response($tweetID);
-    }
-
-    public function ajaxUnlike(Request $request){
-        $tweetID = $request->tweetID;
-        return response($tweetID);
+    public function get(Request $request){
+        $likes = sizeOf(\App\Likes::where('tweet_id', $request->id)->get());
+        return response()->json(['likes'=> $likes], 200);
     }
 }

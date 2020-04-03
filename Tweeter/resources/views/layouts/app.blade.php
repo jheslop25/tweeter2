@@ -85,5 +85,7 @@
         </main>
     </div>
     <div id="footer" class="navbar navbar-expand-md navbar-light bg-primary shadow-sm mt-5 align-self-end">@include('footer')</div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
 </body>
 </html>
