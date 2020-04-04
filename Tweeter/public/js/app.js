@@ -2001,7 +2001,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['tweetid', 'hasliked'],
   data: function data() {
     return {
-      displayCond: this.hasliked
+      displayCond: true
     };
   },
   methods: {
@@ -2037,6 +2037,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     LikeCounter: _LikeCounter_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  mounted: function mounted() {
+    if (this.hasliked == 'false') {
+      return this.displayCond = false;
+    } else if (this.hasliked == 'true') {
+      return this.displayCond = true;
+    }
   }
 });
 

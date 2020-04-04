@@ -5,13 +5,13 @@
                 @csrf
                 <button class="btn btn-dark my-2" type="submit" name="tweetID" value="{{$tweet->id}}">Unlike</button>
             </form> --}}
-            <Like class="col mt-1" :tweetid={{$tweet->id}} hasliked="true">
+            <Like class="col mt-1" :tweetid={{$tweet->id}} hasliked="false">
         @else
             {{-- <form class="col" action="/tweets/likes" method="post">
                 @csrf
                 <button class="btn btn-success my-2" type="submit" name="tweetID" value="{{$tweet->id}}">Like</button>
             </form> --}}
-        <Like class="col mt-1" :tweetid={{$tweet->id}} hasliked="false">
+        <Like class="col mt-1" :tweetid={{$tweet->id}} hasliked="true">
         @endif
     </div>
 </div>

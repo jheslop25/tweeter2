@@ -12,10 +12,9 @@
         name: 'Like',
         props: ['tweetid', 'hasliked'],
         data(){
-            return {
-                displayCond: this.hasliked
-
-            }
+          return {
+              displayCond: true
+          }
         },
         methods: {
             likeTweet: function(){
@@ -44,6 +43,13 @@
         },
         components: {
             LikeCounter
+        },
+        mounted(){
+                    if(this.hasliked == 'false'){
+                        return this.displayCond = false;
+                    } else if (this.hasliked == 'true'){
+                        return this.displayCond = true;
+                    }
         }
     }
 </script>
