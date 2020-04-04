@@ -6,6 +6,7 @@
     <div class="container mb-5">
         <div class="row justify-content-center">
             @foreach ($tweets as $tweet)
+        <tweet href='test/test/test' logo="{{ url('/logo.png')}}" username="{{getUserName($tweet->user_id)}}" content="{{$tweet->content}}" date="{{$tweet->created_at->diffForHumans()}}" />
                 <div class="col-10 card m-4 p-3">
                     <a class="card-title" href="/user/{{$tweet->user_id}}">@ {{getUserName($tweet->user_id)}}<img class="img-fluid" style="width: 30px;" src="{{ url('/logo.png')}}" alt="The Great Ironic Eagle"></a>
                         @if ($tweet->orig_tweeter_name)

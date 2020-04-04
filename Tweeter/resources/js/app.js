@@ -44,7 +44,7 @@ const store = new Vuex.Store({
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('Home', require('./components/Home.vue').default);
 Vue.component('Like', require('./components/Like.vue').default);
-// Vue.component('LikeCounter', require('./components/LikeCounter.vue').default);
+Vue.component('Tweet', require('./components/Tweet.vue').default);
 
 const app = new Vue({
     el: '#app',
