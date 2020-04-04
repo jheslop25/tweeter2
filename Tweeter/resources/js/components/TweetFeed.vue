@@ -1,16 +1,15 @@
 <template>
     <div>
-        <!-- <Tweet
+        <Tweet
             v-for="tweet in tweets"
-            v-bind:key="tweet"
-            :href=""
-            logo: String,
-            username: String,
-            retweet: String,
-            content: String,
-            date: String,
-            photo: String
-        /> -->
+            v-bind:key="tweet.content"
+            :logo="logourl"
+            :userid="tweet.user_id"
+            :retweet="tweet.orig_tweter_name"
+            :content="tweet.content"
+            :date="tweet.created_at"
+            :photo="tweet.tweet_photo"
+        />
         <p @click="getTweets">this is a tweet feed</p>
     </div>
 </template>
@@ -20,6 +19,15 @@
 
     export default {
         name: 'TweetFeed',
+        props: {
+            logourl: String
+        },
+        data(){
+            return {
+                tweets: 'kjhhjhkjh',
+                index: 0
+            }
+        },
         methods: {
             getTweets: function(){
                 axios.post('/ajax/tweets',{
@@ -28,20 +36,17 @@
                     }
                 }).then((result) => {
                     console.log(result.data);
+                    this.tweets = result.data.tweets;
                 }).catch((err) => {
 
                 });
             }
         },
         mounted(){
-            let tweets = this.getTweets;
-            this.tweets = tweets;
-        },
-        data(){
-            return {
-                tweets: [],
-                index: 0
-            }
+            window.addEventListener('load', () =>{
+                let tweets = this.getTweets();
+                this.tweets = tweets;
+            });
         },
         components: {
             Tweet

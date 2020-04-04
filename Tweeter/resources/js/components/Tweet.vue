@@ -15,13 +15,17 @@
     export default {
         name: 'Tweet',
         props: {
-            href: String,
             logo: String,
-            username: String,
+            userid: Number,
             retweet: String,
             content: String,
             date: String,
             photo: String
+        },
+        computed: {
+            href: function(){
+                return '/user/' + this.userid;
+            }
         },
         components: {
             Like

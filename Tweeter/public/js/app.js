@@ -2135,13 +2135,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Tweet',
   props: {
-    href: String,
     logo: String,
-    username: String,
+    userid: Number,
     retweet: String,
     content: String,
     date: String,
     photo: String
+  },
+  computed: {
+    href: function href() {
+      return '/user/' + this.userid;
+    }
   },
   components: {
     Like: _Like_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -2181,30 +2185,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'TweetFeed',
+  props: {
+    logourl: String
+  },
+  data: function data() {
+    return {
+      tweets: 'kjhhjhkjh',
+      index: 0
+    };
+  },
   methods: {
     getTweets: function getTweets() {
+      var _this = this;
+
       axios.post('/ajax/tweets', {
         input: {
           msg: 'give me some tweets'
         }
       }).then(function (result) {
         console.log(result.data);
+        _this.tweets = result.data.tweets;
       })["catch"](function (err) {});
     }
   },
   mounted: function mounted() {
-    var tweets = this.getTweets;
-    this.tweets = tweets;
-  },
-  data: function data() {
-    return {
-      tweets: [],
-      index: 0
-    };
+    var _this2 = this;
+
+    window.addEventListener('load', function () {
+      var tweets = _this2.getTweets();
+
+      _this2.tweets = tweets;
+    });
   },
   components: {
     Tweet: _Tweet_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -38501,9 +38515,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("p", { on: { click: _vm.getTweets } }, [_vm._v("this is a tweet feed")])
-  ])
+  return _c(
+    "div",
+    [
+      _vm._l(_vm.tweets, function(tweet) {
+        return _c("Tweet", {
+          key: tweet.content,
+          attrs: {
+            logo: _vm.logourl,
+            userid: tweet.user_id,
+            retweet: tweet.orig_tweter_name,
+            content: tweet.content,
+            date: tweet.created_at,
+            photo: tweet.tweet_photo
+          }
+        })
+      }),
+      _vm._v(" "),
+      _c("p", { on: { click: _vm.getTweets } }, [
+        _vm._v("this is a tweet feed")
+      ])
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
