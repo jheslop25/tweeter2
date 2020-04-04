@@ -5,10 +5,13 @@
         <h6>{{content}}</h6>
         <img id="post-img" class="img-fluid" v-if="this.photo" :src="photo" alt="a dank meme">
         <p class="text-muted">{{date}}</p>
+        <like :hasliked="liked"/>
     </div>
 </template>
 
 <script>
+    import Like from './Like.vue';
+
     export default {
         name: 'Tweet',
         props: {
@@ -19,6 +22,14 @@
             content: String,
             date: String,
             photo: String
+        },
+        components: {
+            Like
+        },
+        data(){
+            return {
+                liked: 'false'
+            }
         }
 
     }
