@@ -1,17 +1,20 @@
 <template>
     <div>
-        <p v-if="displayCond" class="btn btn-success" @click='likeTweet'>Like</p>
-        <p v-else class="btn btn-danger" @click="unlikeTweet">Unlike</p>
+        <p v-if="displayCond" class="btn btn-success mt-1" @click='likeTweet'>Like (<LikeCounter :tweetid="this.tweetid"/>)</p>
+        <p v-else class="btn btn-danger mt-1" @click="unlikeTweet">Unlike (<LikeCounter :tweetid="this.tweetid"/>)</p>
     </div>
 </template>
 
 <script>
+    import LikeCounter from './LikeCounter.vue';
+
     export default {
         name: 'Like',
         props: ['tweetid', 'hasliked'],
         data(){
             return {
                 displayCond: this.hasliked
+
             }
         },
         methods: {
@@ -23,8 +26,9 @@
                     tweetID: this.tweetid
                 }).then(response => {
                     console.log(response);
-                    document.getElementById("likes-counter").innerHTML = 'you liked this tweet!';
+                    //document.getElementById("likes-counter").innerHTML = 'you liked this tweet!';
                     this.displayCond = false;
+                    this.$root.$emit('addCount');
                 });
             },
             unlikeTweet: function(){
@@ -32,10 +36,14 @@
                     tweetID: this.tweetid
                 }).then(response => {
                     console.log(response);
-                    document.getElementById("likes-counter").innerHTML = 'you unliked this tweet!';
+                    //document.getElementById("likes-counter").innerHTML = 'you unliked this tweet!';
                     this.displayCond = true;
+                    this.$root.$emit('lowerCount');
                 })
             }
+        },
+        components: {
+            LikeCounter
         }
     }
 </script>

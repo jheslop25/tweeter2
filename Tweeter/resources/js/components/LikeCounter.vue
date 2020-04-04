@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <p>{{likes}}</p>
-    </div>
+        <span>{{likes}}</span>
 </template>
 
 <script>
@@ -13,22 +11,36 @@
             }
         },
         props: {
-            tweetID: Number
+            tweetid: Number
         },
         methods: {
             getLikes: function(){
                 axios.post('/likes',{
-                    id: this.tweetID
+                    input: {
+                        id: this.tweetid
+                    }
                 }).then((result) => {
                     console.log(result.data);
+                    this.likes = result.data.likes;
                 }).catch((err) => {
                     console.log(err);
                 });
+            },
+            addOne: function(){
+                this.likes++;
+            },
+            subOne: function(){
+                this.likes--;
             }
         },
         mounted: function(){
             //check for likes
-            this.likes = this.getLikes;
+            window.addEventListener('load', () => {
+                let likeCount = this.getLikes();
+                this.likes = likeCount;
+            })
+            this.$root.$on('addCount', this.addOne);
+            this.$root.$on('lowerCount', this.subOne);
         }
     }
 </script>

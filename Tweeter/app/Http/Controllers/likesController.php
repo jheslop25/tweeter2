@@ -28,7 +28,7 @@ class likesController extends Controller
     }
 
     public function get(Request $request){
-        $likes = sizeOf(\App\Likes::where('tweet_id', $request->id)->get());
+        $likes = sizeOf(\App\Likes::where('tweet_id', $request->input['id'])->get());
         return response()->json(['likes'=> $likes], 200);
     }
 }
