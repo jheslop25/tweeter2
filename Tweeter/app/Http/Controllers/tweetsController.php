@@ -141,4 +141,30 @@ class tweetsController extends Controller
             return back();
         }
     }
+
+    public function ajaxTweets(Request $request){
+            $followed = \App\Follows::where('user_id', $request->user()->id)->orderBy('created_at', 'desc')->get();
+            $tweets = [];
+            $allComments = [];
+            if(sizeOf($followed)>0){
+                foreach($followed as $follow){
+                    $id = $follow->followed_id;
+                    //var_dump($id);
+                    $getTweets = \App\Tweets::where('user_id', $id)->orderBy('created_at', 'desc')->get();
+
+                    //var_dump($tweets);
+                foreach($getTweets as $tweet){
+                    // var_dump($tweet->user_id);
+                    // var_dump($tweet->content);
+                    array_push($tweets, $tweet);
+                    $id = $tweet->id;
+                    $comments = \App\Comments::where('tweet_id', $id)->get();
+                    array_push($allComments, $comments);
+                }
+            }
+            return response()->json(['tweets'=> $tweets, 'comments'=> $allComments], 200);
+        } else {
+            return response()->json(['msg' => 'no follows'], 404);
+        }
+    }
 }

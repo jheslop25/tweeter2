@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/dev', 'HomeController@dev');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 //begin routes to tweetsController
@@ -36,6 +38,8 @@ Route::post('/tweets/destroy', 'tweetsController@destroyTweet');
 Route::get('/tweets/view/{tweet_id}', 'tweetsController@viewTweet');
 
 Route::post('/retweet', 'tweetsController@retweet');
+
+Route::post('/ajax/tweets', 'tweetsController@ajaxTweets');
 
 //Begin Routes to tweetsCommentController
 
