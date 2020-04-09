@@ -31,4 +31,10 @@ class HomeController extends Controller
     public function dev(){
         return view('welcome');
     }
+
+    public function username(Request $request){
+        $username = \App\User::find($request->input);
+
+        return response()->json(['username' => $username->name], 200);
+    }
 }

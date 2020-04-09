@@ -23,6 +23,8 @@ Route::get('/dev', 'HomeController@dev');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::post('/username', 'HomeController@username');
+
 //begin routes to tweetsController
 
 Route::get('/tweets', 'tweetsController@showAllFollowed');

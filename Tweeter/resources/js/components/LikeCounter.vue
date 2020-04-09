@@ -35,7 +35,7 @@
         },
         mounted: function(){
             //check for likes
-            window.addEventListener('load', () => {
+            this.$root.$on('ready', () => {
                 let likeCount = this.getLikes();
                 this.likes = likeCount;
             })

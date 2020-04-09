@@ -9,6 +9,7 @@
             :content="tweet.content"
             :date="tweet.created_at"
             :photo="tweet.tweet_photo"
+            :id="tweet.id"
         />
         <p @click="getTweets">this is a tweet feed</p>
     </div>
@@ -37,6 +38,7 @@
                 }).then((result) => {
                     console.log(result.data);
                     this.tweets = result.data.tweets;
+
                 }).catch((err) => {
 
                 });
