@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div>
         <p class="btn btn-danger" @click="deleteTweet">Delete</p>
         <p v-if="!show" class="btn btn-secondary" @click="showEdit">Edit</p>
         <input v-if="show" type="text" v-model="input">
