@@ -6,12 +6,15 @@
         <img id="post-img" class="img-fluid" v-if="this.photo" :src="photo" alt="a dank meme">
         <p class="text-muted">{{this.readableDate}}</p>
         <like :hasliked="liked" :tweetid="this.id"/>
+        <EditDelete/>
+        <comments/>
     </div>
 </template>
 
 <script>
     import Like from './Like.vue';
-
+    import EditDelete from './EditDelete.vue';
+    import Comments from './Comments.vue';
     export default {
         name: 'Tweet',
         props: {
@@ -35,7 +38,9 @@
             }
         },
         components: {
-            Like
+            Like,
+            Comments,
+            EditDelete
         },
         data(){
             return {
