@@ -8,6 +8,7 @@
         <p class="btn btn-primary m-1">but...why?</p>
       </div>
     </div>
+
     <div id="marketing" class="m-4">
         <p>{{ getMarkOne }}</p>
         <p>{{ getMarkTwo }}</p>
@@ -39,5 +40,6 @@ export default {
 #main {
   width: 100vw;
   min-height: 75vh;
+  background-image: 'some url';
 }
 </style>

@@ -1958,6 +1958,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   computed: {
@@ -6790,7 +6791,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#main[data-v-f2b6376c] {\n  width: 100vw;\n  min-height: 75vh;\n}", ""]);
+exports.push([module.i, "#main[data-v-f2b6376c] {\n  width: 100vw;\n  min-height: 75vh;\n  background-image: \"some url\";\n}", ""]);
 
 // exports
 

@@ -150,7 +150,7 @@ class tweetsController extends Controller
                 foreach($followed as $follow){
                     $id = $follow->followed_id;
                     //var_dump($id);
-                    $getTweets = \App\Tweets::where('user_id', $id)->orderBy('created_at', 'desc')->get();
+                    $getTweets = \App\Tweets::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(15);
 
                     //var_dump($tweets);
                 foreach($getTweets as $tweet){
