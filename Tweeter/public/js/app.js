@@ -1914,8 +1914,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Comments'
+  name: 'Comments',
+  methods: {
+    saveComment: function saveComment() {
+      axios.post('ajax/tweet/comment', {
+        input: {
+          tweetId: this.tweetid,
+          content: this.comment
+        }
+      }).then(function (result) {
+        console.log('you made a comment');
+      })["catch"](function (err) {});
+    },
+    showForm: function showForm() {
+      this.show = true;
+    }
+  },
+  data: function data() {
+    return {
+      comment: '',
+      show: false
+    };
+  }
 });
 
 /***/ }),
@@ -56008,16 +56031,48 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    !_vm.show
+      ? _c(
+          "p",
+          { staticClass: "btn btn-primary", on: { click: _vm.showForm } },
+          [_vm._v("Comment")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.show
+      ? _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.comment,
+              expression: "comment"
+            }
+          ],
+          attrs: { type: "text", placeholder: "Comment" },
+          domProps: { value: _vm.comment },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.comment = $event.target.value
+            }
+          }
+        })
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.show
+      ? _c(
+          "p",
+          { staticClass: "btn btn-primary", on: { click: _vm.saveComment } },
+          [_vm._v("Comment")]
+        )
+      : _vm._e()
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("p", [_vm._v("this is a comments component")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
