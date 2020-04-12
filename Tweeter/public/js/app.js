@@ -2001,7 +2001,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     comments: Array
   },
   mounted: function mounted() {
-    this.$root.$on('postGiphy', this.saveComment);
+    this.$root.$on('postGiphy' + this.tweetid, this.saveComment);
   }
 });
 
@@ -2076,6 +2076,9 @@ __webpack_require__.r(__webpack_exports__);
       index: 0
     };
   },
+  props: {
+    id: Number
+  },
   methods: {
     getGif: function getGif() {
       var _this = this;
@@ -2097,7 +2100,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     postGiphy: function postGiphy(item) {
       console.log(item);
-      this.$root.$emit('postGiphy', item);
+      this.$root.$emit('postGiphy' + this.id, item);
       this.hideCards();
     },
     showCards: function showCards() {
@@ -59258,7 +59261,7 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.show ? _c("Giphy") : _vm._e()
+      _vm.show ? _c("Giphy", { attrs: { id: this.tweetid } }) : _vm._e()
     ],
     2
   )

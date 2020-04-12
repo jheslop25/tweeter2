@@ -25,6 +25,9 @@ export default {
         index: 0
     };
   },
+  props: {
+    id: Number
+  },
   methods: {
     getGif: function() {
       let url = "http://api.giphy.com/v1/gifs/search?";
@@ -45,7 +48,7 @@ export default {
     },
     postGiphy(item) {
       console.log(item);
-      this.$root.$emit('postGiphy', item);
+      this.$root.$emit('postGiphy'+this.id, item);
       this.hideCards();
     },
     showCards(){

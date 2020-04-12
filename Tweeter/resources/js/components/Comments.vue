@@ -4,7 +4,7 @@
     <p v-if="!show" class="btn btn-primary" @click="showForm">Comment</p>
     <input class="form-control m-2" v-if="show" v-model="content" type="text" placeholder="Comment" />
     <p class="btn btn-primary m-2" v-if="show" @click="saveComment">Comment</p>
-    <Giphy v-if="show"/>
+    <Giphy v-if="show" :id="this.tweetid"/>
   </div>
 </template>
 
@@ -63,7 +63,7 @@ export default {
       comments: Array
   },
   mounted(){
-      this.$root.$on('postGiphy', this.saveComment);
+      this.$root.$on('postGiphy'+this.tweetid, this.saveComment);
   }
 };
 </script>
