@@ -12,7 +12,7 @@ class tweets extends Seeder
     public function run()
     {
         DB::table('tweets')->insert([
-            'user_id' => 2,
+            'user_id' => 1,
             'content' => Str::random(40)
         ]);
     }

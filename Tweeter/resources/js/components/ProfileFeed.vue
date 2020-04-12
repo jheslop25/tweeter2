@@ -74,8 +74,7 @@ export default {
     // });
   },
   components: {
-    Tweet,
-    MakeTweet
+    Tweet
   }
 };
 </script>

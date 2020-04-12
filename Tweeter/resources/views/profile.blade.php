@@ -5,8 +5,7 @@
     @include('functions')
     @include('profile.user')
 @if(isUser($user[0]->name, Auth::user()->name))
-    {{-- <MakeTweet/> --}}
 @endif
-    <ProfileFeed />
+    <Profile />
 </div>
 @endsection
