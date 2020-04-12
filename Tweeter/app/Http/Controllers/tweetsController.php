@@ -215,7 +215,7 @@ class tweetsController extends Controller
         // a function to show all of a user's tweets on their profile page
         $tweets = [];
 
-                $getTweets = \App\Tweets::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
+                $getTweets = \App\Tweets::where('user_id', $request->user)->orderBy('created_at', 'desc')->paginate(10);
 
                 //var_dump($tweets);
                 foreach ($getTweets as $tweet) {

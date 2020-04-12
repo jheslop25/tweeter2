@@ -26,7 +26,8 @@ import Tweet from "./Tweet.vue";
 export default {
   name: "ProfileFeed",
   props: {
-    logourl: String
+    logourl: String,
+    userid: Number
   },
   data() {
     return {
@@ -38,7 +39,7 @@ export default {
     getTweets: function() {
       axios
         .post("/tweets/profile?page=" + this.page, {
-          input: 3
+          user: this.userid
         })
         .then(result => {
           console.log(result.data);

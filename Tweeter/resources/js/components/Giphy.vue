@@ -6,9 +6,9 @@
       <button class="btn btn-primary col-2" @click="getGif">get giphy</button>
     </div>
     <div class="row m-3 p-3" v-if="show">
-      <div v-for="img in imgs" v-bind:key="img" class="col-auto card p-2 m-2">
-        <iframe :src="img" frameborder="0"></iframe>
-        <button class="m-2 btn btn-secondary" @click="postGiphy(img)">Post</button>
+      <div v-for="item in imgs" v-bind:key="item" class="col-auto card p-2 m-2">
+        <iframe :src="item" frameborder="0"></iframe>
+        <button class="m-2 btn btn-secondary" @click="postGiphy(item)">Post</button>
       </div>
     </div>
   </div>
@@ -43,9 +43,9 @@ export default {
           console.log("somethign went wrong " + err);
         });
     },
-    postGiphy(img) {
-      console.log(img);
-      this.$root.$emit('postGiphy', img);
+    postGiphy(item) {
+      console.log(item);
+      this.$root.$emit('postGiphy', item);
       this.hideCards();
     },
     showCards(){

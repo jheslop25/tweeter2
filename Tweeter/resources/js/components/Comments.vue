@@ -33,7 +33,7 @@ export default {
                 },
               1: result.data.name,
           };
-          this.commentsData.push(comment.toArray());
+          //this.commentsData.push(comment.toArray());
         })
         .catch(err => {
             console.log(err);

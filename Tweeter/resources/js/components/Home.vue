@@ -1,17 +1,22 @@
 <template>
-  <div id="main">
-    <div id="headline" class="m-3">
-      <p class="h1 m-1">{{getHead}}</p>
-      <p class="h4 m-1">{{ getSub }}</p>
-      <div class>
-        <a href="/login" class="btn btn-primary m-1">sign-up</a>
-        <p class="btn btn-primary m-1">but...why?</p>
+  <div id="main" class="container">
+    <div class="row justify-content-center">
+      <div class="col">
+        <img :src="logo" alt />
+        <div id="headline" class="m-3">
+          <p class="h1 m-1">{{getHead}}</p>
+          <p class="h4 m-1">{{ getSub }}</p>
+          <div class>
+            <a href="/login" class="btn btn-primary m-1">sign-up</a>
+            <p class="btn btn-primary m-1">but...why?</p>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div id="marketing" class="m-4">
-      <p>{{ getMarkOne }}</p>
-      <p>{{ getMarkTwo }}</p>
+      <div id="marketing" class="m-4">
+        <p>{{ getMarkOne }}</p>
+        <p>{{ getMarkTwo }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -32,6 +37,9 @@ export default {
     getMarkTwo: function() {
       return this.$store.getters.getMarketingTwo;
     }
+  },
+  props: {
+    logo: String
   }
 };
 </script>

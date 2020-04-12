@@ -1953,8 +1953,6 @@ __webpack_require__.r(__webpack_exports__);
   name: "Comments",
   methods: {
     saveComment: function saveComment(img) {
-      var _this = this;
-
       console.log(img);
       axios.post("/tweets/comment/create", {
         input: {
@@ -1970,9 +1968,7 @@ __webpack_require__.r(__webpack_exports__);
             giphy_url: result.data.giphy_url
           },
           1: result.data.name
-        };
-
-        _this.commentsData.push(comment.toArray());
+        }; //this.commentsData.push(comment.toArray());
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2092,9 +2088,9 @@ __webpack_require__.r(__webpack_exports__);
         console.log("somethign went wrong " + err);
       });
     },
-    postGiphy: function postGiphy(img) {
-      console.log(img);
-      this.$root.$emit('postGiphy', img);
+    postGiphy: function postGiphy(item) {
+      console.log(item);
+      this.$root.$emit('postGiphy', item);
       this.hideCards();
     },
     showCards: function showCards() {
@@ -2135,6 +2131,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   computed: {
@@ -2150,6 +2151,9 @@ __webpack_require__.r(__webpack_exports__);
     getMarkTwo: function getMarkTwo() {
       return this.$store.getters.getMarketingTwo;
     }
+  },
+  props: {
+    logo: String
   }
 });
 
@@ -2341,6 +2345,10 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     MakeTweet: _MakeTweet_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     ProfileFeed: _ProfileFeed_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  props: {
+    logourl: String,
+    userid: Number
   }
 });
 
@@ -2385,7 +2393,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProfileFeed",
   props: {
-    logourl: String
+    logourl: String,
+    userid: Number
   },
   data: function data() {
     return {
@@ -2398,7 +2407,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post("/tweets/profile?page=" + this.page, {
-        input: 3
+        user: this.userid
       }).then(function (result) {
         console.log(result.data);
         var tweets = result.data.tweets;
@@ -59340,12 +59349,12 @@ var render = function() {
       ? _c(
           "div",
           { staticClass: "row m-3 p-3" },
-          _vm._l(_vm.imgs, function(img) {
+          _vm._l(_vm.imgs, function(item) {
             return _c(
               "div",
-              { key: img, staticClass: "col-auto card p-2 m-2" },
+              { key: item, staticClass: "col-auto card p-2 m-2" },
               [
-                _c("iframe", { attrs: { src: img, frameborder: "0" } }),
+                _c("iframe", { attrs: { src: item, frameborder: "0" } }),
                 _vm._v(" "),
                 _c(
                   "button",
@@ -59353,7 +59362,7 @@ var render = function() {
                     staticClass: "m-2 btn btn-secondary",
                     on: {
                       click: function($event) {
-                        return _vm.postGiphy(img)
+                        return _vm.postGiphy(item)
                       }
                     }
                   },
@@ -59389,19 +59398,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "main" } }, [
-    _c("div", { staticClass: "m-3", attrs: { id: "headline" } }, [
-      _c("p", { staticClass: "h1 m-1" }, [_vm._v(_vm._s(_vm.getHead))]),
+  return _c("div", { staticClass: "container", attrs: { id: "main" } }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("img", { attrs: { src: _vm.logo, alt: "" } }),
+        _vm._v(" "),
+        _c("div", { staticClass: "m-3", attrs: { id: "headline" } }, [
+          _c("p", { staticClass: "h1 m-1" }, [_vm._v(_vm._s(_vm.getHead))]),
+          _vm._v(" "),
+          _c("p", { staticClass: "h4 m-1" }, [_vm._v(_vm._s(_vm.getSub))]),
+          _vm._v(" "),
+          _vm._m(0)
+        ])
+      ]),
       _vm._v(" "),
-      _c("p", { staticClass: "h4 m-1" }, [_vm._v(_vm._s(_vm.getSub))]),
-      _vm._v(" "),
-      _vm._m(0)
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "m-4", attrs: { id: "marketing" } }, [
-      _c("p", [_vm._v(_vm._s(_vm.getMarkOne))]),
-      _vm._v(" "),
-      _c("p", [_vm._v(_vm._s(_vm.getMarkTwo))])
+      _c("div", { staticClass: "m-4", attrs: { id: "marketing" } }, [
+        _c("p", [_vm._v(_vm._s(_vm.getMarkOne))]),
+        _vm._v(" "),
+        _c("p", [_vm._v(_vm._s(_vm.getMarkTwo))])
+      ])
     ])
   ])
 }
@@ -59576,7 +59591,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("MakeTweet"), _vm._v(" "), _c("ProfileFeed")], 1)
+  return _c(
+    "div",
+    [
+      _c("MakeTweet"),
+      _vm._v(" "),
+      _c("ProfileFeed", { attrs: { logourl: _vm.logourl, userid: _vm.userid } })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

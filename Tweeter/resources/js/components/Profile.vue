@@ -1,7 +1,7 @@
 <template>
   <div>
     <MakeTweet />
-    <ProfileFeed />
+    <ProfileFeed :logourl="logourl" :userid="userid" />
   </div>
 </template>
 
@@ -14,6 +14,10 @@ export default {
     components: {
         MakeTweet,
         ProfileFeed
+    },
+    props: {
+      logourl: String,
+      userid: Number
     }
 }
 </script>
