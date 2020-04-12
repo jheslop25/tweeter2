@@ -1937,6 +1937,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CommentCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CommentCard.vue */ "./resources/js/components/CommentCard.vue");
 /* harmony import */ var _Giphy_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Giphy.vue */ "./resources/js/components/Giphy.vue");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 //
 //
 //
@@ -1953,7 +1955,12 @@ __webpack_require__.r(__webpack_exports__);
   name: "Comments",
   methods: {
     saveComment: function saveComment(img) {
-      console.log(img);
+      console.log(_typeof(img));
+
+      if (typeof img !== "string") {
+        img = null;
+      }
+
       axios.post("/tweets/comment/create", {
         input: {
           tweetId: this.tweetid,
@@ -2548,6 +2555,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2559,7 +2569,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       tweets: null,
-      page: 1
+      page: 1,
+      trigger: false
     };
   },
   methods: {
@@ -2577,27 +2588,36 @@ __webpack_require__.r(__webpack_exports__);
           _this.tweets = tweets;
         } else {
           _this.tweets = oldTweets.concat(tweets);
-        } //this.$root.$emit('tweets');
-
+        }
 
         _this.page++;
+
+        if (_this.trigger == false) {
+          // document.getElementById("trigger").innerHTML =
+          //   "<p id='get-tweets'></p>";
+          _this.trigger = true;
+        }
       })["catch"](function (err) {
         console.log(err);
+      });
+    },
+    someMagic: function someMagic() {
+      var context = this;
+      var controller = new scrollmagic__WEBPACK_IMPORTED_MODULE_0___default.a.Controller();
+      var scene = new scrollmagic__WEBPACK_IMPORTED_MODULE_0___default.a.Scene({
+        triggerElement: "#get-tweets",
+        triggerHook: "onEnter"
+      }).addTo(controller).on("enter", function () {
+        if (context.trigger == true) {
+          context.getTweets();
+        }
       });
     }
   },
   mounted: function mounted() {
-    // window.addEventListener('load', () =>{
     var allTweets = this.getTweets();
     this.tweets = allTweets;
-    var context = this;
-    var controller = new scrollmagic__WEBPACK_IMPORTED_MODULE_0___default.a.Controller();
-    var scene = new scrollmagic__WEBPACK_IMPORTED_MODULE_0___default.a.Scene({
-      triggerElement: "#get-tweets",
-      triggerHook: "onEnter"
-    }).addTo(controller).on("enter", function () {
-      context.getTweets();
-    }); // });
+    this.someMagic();
   },
   components: {
     Tweet: _Tweet_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -59753,7 +59773,7 @@ var render = function() {
       _vm._v(" "),
       _vm._l(_vm.tweets, function(tweet) {
         return _c("Tweet", {
-          key: tweet[1].id,
+          key: "tweet-" + tweet[1].id,
           attrs: {
             logo: _vm.logourl,
             username: tweet[0].name,
@@ -59771,12 +59791,21 @@ var render = function() {
         })
       }),
       _vm._v(" "),
-      _c("p", { attrs: { id: "get-tweets" } })
+      _vm._m(0)
     ],
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "trigger" } }, [
+      _c("p", { attrs: { id: "get-tweets" } })
+    ])
+  }
+]
 render._withStripped = true
 
 

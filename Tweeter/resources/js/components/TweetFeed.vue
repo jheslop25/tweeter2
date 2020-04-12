@@ -3,7 +3,7 @@
     <MakeTweet />
     <Tweet
       v-for="tweet in tweets"
-      v-bind:key="tweet[1].id"
+      v-bind:key="'tweet-'+tweet[1].id"
       :logo="logourl"
       :username="tweet[0].name"
       :userid="tweet[1].user_id"
@@ -17,11 +17,15 @@
       :likes="tweet[2]"
       :owner="tweet[5]"
     />
-    <p id="get-tweets"></p>
+    <div id="trigger">
+      <!-- here will go our trigger element -->
+      <p id='get-tweets'></p>
+    </div>
   </div>
 </template>
 
 <script>
+
 import ScrollMagic from "scrollmagic";
 import Tweet from "./Tweet.vue";
 import MakeTweet from "./MakeTweet.vue";
@@ -33,7 +37,8 @@ export default {
   data() {
     return {
       tweets: null,
-      page: 1
+      page: 1,
+      trigger: false
     };
   },
   methods: {
@@ -51,29 +56,37 @@ export default {
           } else {
             this.tweets = oldTweets.concat(tweets);
           }
-          //this.$root.$emit('tweets');
+
           this.page++;
+          if (this.trigger == false) {
+            // document.getElementById("trigger").innerHTML =
+            //   "<p id='get-tweets'></p>";
+            this.trigger = true;
+          }
         })
         .catch(err => {
           console.log(err);
         });
+    },
+    someMagic: function(){
+      let context = this;
+      var controller = new ScrollMagic.Controller();
+      var scene = new ScrollMagic.Scene({
+        triggerElement: "#get-tweets",
+        triggerHook: "onEnter"
+      })
+        .addTo(controller)
+        .on("enter", function() {
+          if(context.trigger == true){
+            context.getTweets();
+          }
+        });
     }
   },
   mounted() {
-    // window.addEventListener('load', () =>{
     let allTweets = this.getTweets();
     this.tweets = allTweets;
-    let context = this;
-    var controller = new ScrollMagic.Controller();
-    var scene = new ScrollMagic.Scene({
-      triggerElement: "#get-tweets",
-      triggerHook: "onEnter"
-    })
-      .addTo(controller)
-      .on("enter", function(){
-        context.getTweets();
-      });
-    // });
+    this.someMagic();
   },
   components: {
     Tweet,

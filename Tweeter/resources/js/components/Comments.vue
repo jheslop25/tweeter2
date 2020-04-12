@@ -15,7 +15,10 @@ export default {
   name: "Comments",
   methods: {
     saveComment: function(img) {
-        console.log(img);
+        console.log(typeof(img));
+        if(typeof(img) !== "string"){
+          img = null;
+        }
       axios
         .post("/tweets/comment/create", {
           input: {
