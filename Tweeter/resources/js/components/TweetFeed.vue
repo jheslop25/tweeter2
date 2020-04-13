@@ -2,14 +2,18 @@
     <div>
         <Tweet
             v-for="tweet in tweets"
-            v-bind:key="tweet.content"
+            v-bind:key="tweet[1].content"
             :logo="logourl"
-            :userid="tweet.user_id"
-            :retweet="tweet.orig_tweter_name"
-            :content="tweet.content"
-            :date="tweet.created_at"
-            :photo="tweet.tweet_photo"
-            :id="tweet.id"
+            :username="tweet[0].name"
+            :userid="tweet[1].user_id"
+            :retweet="tweet[1].orig_tweter_name"
+            :content="tweet[1].content"
+            :date="tweet[1].created_at"
+            :photo="tweet[1].tweet_photo"
+            :id="tweet[1].id"
+            :comments="tweet[3]"
+            :hasliked="tweet[4]"
+            :likes="tweet[2]"
         />
         <p @click="getTweets">this is a tweet feed</p>
     </div>
@@ -25,8 +29,7 @@
         },
         data(){
             return {
-                tweets: 'kjhhjhkjh',
-                index: 0
+                tweets: [],
             }
         },
         methods: {
@@ -38,17 +41,17 @@
                 }).then((result) => {
                     console.log(result.data);
                     this.tweets = result.data.tweets;
-
+                    //this.$root.$emit('tweets');
                 }).catch((err) => {
-
+                    console.log(err);
                 });
             }
         },
         mounted(){
-            window.addEventListener('load', () =>{
-                let tweets = this.getTweets();
-                this.tweets = tweets;
-            });
+            // window.addEventListener('load', () =>{
+                let allTweets = this.getTweets();
+                this.tweets = allTweets;
+            // });
         },
         components: {
             Tweet

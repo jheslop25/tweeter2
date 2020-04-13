@@ -1,7 +1,7 @@
 <template>
     <div>
-        <p v-if="displayCond" class="btn btn-success mt-1" @click='likeTweet'>Like (<LikeCounter :tweetid="this.tweetid"/>)</p>
-        <p v-else class="btn btn-danger mt-1" @click="unlikeTweet">Unlike (<LikeCounter :tweetid="this.tweetid"/>)</p>
+        <p v-if="!displayCond" class="btn btn-success mt-1" @click='likeTweet'>Like (<LikeCounter :likescount="this.likes"/>)</p>
+        <p v-else class="btn btn-danger mt-1" @click="unlikeTweet">Unlike (<LikeCounter :likescount="this.likes"/>)</p>
     </div>
 </template>
 
@@ -10,10 +10,14 @@
 
     export default {
         name: 'Like',
-        props: ['tweetid', 'hasliked'],
+        props: {
+            likes: Number,
+            hasliked: Boolean,
+            tweetid: Number
+        },
         data(){
           return {
-              displayCond: true
+              displayCond: this.hasliked
           }
         },
         methods: {
@@ -26,7 +30,7 @@
                 }).then(response => {
                     console.log(response);
                     //document.getElementById("likes-counter").innerHTML = 'you liked this tweet!';
-                    this.displayCond = false;
+                    this.displayCond = true;
                     this.$root.$emit('addCount');
                 });
             },
@@ -36,20 +40,13 @@
                 }).then(response => {
                     console.log(response);
                     //document.getElementById("likes-counter").innerHTML = 'you unliked this tweet!';
-                    this.displayCond = true;
+                    this.displayCond = false;
                     this.$root.$emit('lowerCount');
                 })
             }
         },
         components: {
             LikeCounter
-        },
-        mounted(){
-                    if(this.hasliked == 'false'){
-                        return this.displayCond = false;
-                    } else if (this.hasliked == 'true'){
-                        return this.displayCond = true;
-                    }
         }
     }
 </script>

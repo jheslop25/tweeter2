@@ -5,9 +5,9 @@
         <h6>{{content}}</h6>
         <img id="post-img" class="img-fluid" v-if="this.photo" :src="photo" alt="a dank meme">
         <p class="text-muted">{{this.readableDate}}</p>
-        <like :hasliked="liked" :tweetid="this.id"/>
+        <like :hasliked="this.hasliked" :tweetid="this.id" :likes="this.likes"/>
         <EditDelete/>
-        <comments/>
+        <comments :comments="this.comments" />
     </div>
 </template>
 
@@ -19,12 +19,16 @@
         name: 'Tweet',
         props: {
             id: Number,
+            username: String,
             logo: String,
             userid: Number,
             retweet: String,
             content: String,
             date: String,
-            photo: String
+            photo: String,
+            comments: Array,
+            hasliked: Boolean,
+            likes: Number
         },
         computed: {
             href: function(){
@@ -41,20 +45,6 @@
             Like,
             Comments,
             EditDelete
-        },
-        data(){
-            return {
-                liked: false,
-                username: ''
-            }
-        },
-        mounted(){
-            this.$root.$emit('ready');
-            axios.post('/username', {
-                input: this.userid
-            }).then((result) => {
-                this.username = result.data.username;
-            });
         }
     }
 </script>

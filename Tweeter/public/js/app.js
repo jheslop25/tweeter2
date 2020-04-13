@@ -2132,10 +2132,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Like',
-  props: ['tweetid', 'hasliked'],
+  props: {
+    likes: Number,
+    hasliked: Boolean,
+    tweetid: Number
+  },
   data: function data() {
     return {
-      displayCond: true
+      displayCond: this.hasliked
     };
   },
   methods: {
@@ -2150,7 +2154,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         console.log(response); //document.getElementById("likes-counter").innerHTML = 'you liked this tweet!';
 
-        _this.displayCond = false;
+        _this.displayCond = true;
 
         _this.$root.$emit('addCount');
       });
@@ -2163,7 +2167,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         console.log(response); //document.getElementById("likes-counter").innerHTML = 'you unliked this tweet!';
 
-        _this2.displayCond = true;
+        _this2.displayCond = false;
 
         _this2.$root.$emit('lowerCount');
       });
@@ -2171,13 +2175,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     LikeCounter: _LikeCounter_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  mounted: function mounted() {
-    if (this.hasliked == 'false') {
-      return this.displayCond = false;
-    } else if (this.hasliked == 'true') {
-      return this.displayCond = true;
-    }
   }
 });
 
@@ -2198,45 +2195,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'LikeCounter',
+  props: {
+    likescount: Number
+  },
   data: function data() {
     return {
-      likes: 0
+      likesData: this.likescount
     };
   },
-  props: {
-    tweetid: Number
-  },
   methods: {
-    getLikes: function getLikes() {
-      var _this = this;
-
-      axios.post('/likes', {
-        input: {
-          id: this.tweetid
-        }
-      }).then(function (result) {
-        console.log(result.data);
-        _this.likes = result.data.likes;
-      })["catch"](function (err) {
-        console.log(err);
-      });
-    },
     addOne: function addOne() {
-      this.likes++;
+      this.likesData++;
     },
     subOne: function subOne() {
-      this.likes--;
+      this.likesData--;
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
-
     //check for likes
-    this.$root.$on('ready', function () {
-      var likeCount = _this2.getLikes();
-
-      _this2.likes = likeCount;
-    });
+    // this.$root.$on('ready', () => {
+    //     let likeCount = this.getLikes();
+    //     this.likes = likeCount;
+    // })
     this.$root.$on('addCount', this.addOne);
     this.$root.$on('lowerCount', this.subOne);
   }
@@ -2276,12 +2256,16 @@ __webpack_require__.r(__webpack_exports__);
   name: 'Tweet',
   props: {
     id: Number,
+    username: String,
     logo: String,
     userid: Number,
     retweet: String,
     content: String,
     date: String,
-    photo: String
+    photo: String,
+    comments: Array,
+    hasliked: Boolean,
+    likes: Number
   },
   computed: {
     href: function href() {
@@ -2299,22 +2283,6 @@ __webpack_require__.r(__webpack_exports__);
     Like: _Like_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Comments: _Comments_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     EditDelete: _EditDelete_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  data: function data() {
-    return {
-      liked: false,
-      username: ''
-    };
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    this.$root.$emit('ready');
-    axios.post('/username', {
-      input: this.userid
-    }).then(function (result) {
-      _this.username = result.data.username;
-    });
   }
 });
 
@@ -2347,6 +2315,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'TweetFeed',
@@ -2355,8 +2327,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      tweets: 'kjhhjhkjh',
-      index: 0
+      tweets: []
     };
   },
   methods: {
@@ -2369,18 +2340,16 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (result) {
         console.log(result.data);
-        _this.tweets = result.data.tweets;
-      })["catch"](function (err) {});
+        _this.tweets = result.data.tweets; //this.$root.$emit('tweets');
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
-
-    window.addEventListener('load', function () {
-      var tweets = _this2.getTweets();
-
-      _this2.tweets = tweets;
-    });
+    // window.addEventListener('load', () =>{
+    var allTweets = this.getTweets();
+    this.tweets = allTweets; // });
   },
   components: {
     Tweet: _Tweet_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -56322,13 +56291,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.displayCond
+    !_vm.displayCond
       ? _c(
           "p",
           { staticClass: "btn btn-success mt-1", on: { click: _vm.likeTweet } },
           [
             _vm._v("Like ("),
-            _c("LikeCounter", { attrs: { tweetid: this.tweetid } }),
+            _c("LikeCounter", { attrs: { likescount: this.likes } }),
             _vm._v(")")
           ],
           1
@@ -56341,7 +56310,7 @@ var render = function() {
           },
           [
             _vm._v("Unlike ("),
-            _c("LikeCounter", { attrs: { tweetid: this.tweetid } }),
+            _c("LikeCounter", { attrs: { likescount: this.likes } }),
             _vm._v(")")
           ],
           1
@@ -56370,7 +56339,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("span", [_vm._v(_vm._s(_vm.likes))])
+  return _c("span", [_vm._v(_vm._s(_vm.likesData))])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -56424,11 +56393,13 @@ var render = function() {
         _vm._v(_vm._s(this.readableDate))
       ]),
       _vm._v(" "),
-      _c("like", { attrs: { hasliked: _vm.liked, tweetid: this.id } }),
+      _c("like", {
+        attrs: { hasliked: this.hasliked, tweetid: this.id, likes: this.likes }
+      }),
       _vm._v(" "),
       _c("EditDelete"),
       _vm._v(" "),
-      _c("comments")
+      _c("comments", { attrs: { comments: this.comments } })
     ],
     1
   )
@@ -56460,15 +56431,19 @@ var render = function() {
     [
       _vm._l(_vm.tweets, function(tweet) {
         return _c("Tweet", {
-          key: tweet.content,
+          key: tweet[1].content,
           attrs: {
             logo: _vm.logourl,
-            userid: tweet.user_id,
-            retweet: tweet.orig_tweter_name,
-            content: tweet.content,
-            date: tweet.created_at,
-            photo: tweet.tweet_photo,
-            id: tweet.id
+            username: tweet[0].name,
+            userid: tweet[1].user_id,
+            retweet: tweet[1].orig_tweter_name,
+            content: tweet[1].content,
+            date: tweet[1].created_at,
+            photo: tweet[1].tweet_photo,
+            id: tweet[1].id,
+            comments: tweet[3],
+            hasliked: tweet[4],
+            likes: tweet[2]
           }
         })
       }),
