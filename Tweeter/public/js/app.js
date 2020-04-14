@@ -1914,8 +1914,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'CommentCard'
+  name: 'CommentCard',
+  props: {
+    comment: String,
+    username: String,
+    url: String
+  }
 });
 
 /***/ }),
@@ -1930,6 +1936,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CommentCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CommentCard.vue */ "./resources/js/components/CommentCard.vue");
+/* harmony import */ var _Giphy_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Giphy.vue */ "./resources/js/components/Giphy.vue");
+//
 //
 //
 //
@@ -1940,18 +1948,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Comments",
   methods: {
-    saveComment: function saveComment() {
+    saveComment: function saveComment(img) {
+      var _this = this;
+
       axios.post("/tweets/comment/create", {
         input: {
           tweetId: this.tweetid,
-          comment: this.comment,
-          giphy_url: this.giphy_url
+          comment: this.content,
+          giphy_url: img
         }
       }).then(function (result) {
         console.log(result.data.msg);
+
+        _this.comments.push([[result.data.msg, result.data.name, result.data.giphy_url]]);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -1962,16 +1975,21 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      comment: "",
+      content: "",
       show: false,
       giphy_url: null
     };
   },
-  components: {// CommentCard
+  components: {
+    CommentCard: _CommentCard_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Giphy: _Giphy_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: {
     tweetid: Number,
     comments: Array
+  },
+  mounted: function mounted() {
+    this.$root.$on('postGiphy', this.saveComment);
   }
 });
 
@@ -2040,8 +2058,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       query: "",
-      imgs: [] //an empty array soon to be filled with urls
-
+      imgs: [],
+      //an empty array soon to be filled with urls
+      show: false
     };
   },
   methods: {
@@ -2056,6 +2075,8 @@ __webpack_require__.r(__webpack_exports__);
 
         for (var i = 0; i < 4; i++) {
           _this.imgs.push(result.data.data[i].embed_url);
+
+          _this.showCards();
         }
       })["catch"](function (err) {
         console.log("somethign went wrong " + err);
@@ -2063,6 +2084,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     postGiphy: function postGiphy(img) {
       console.log(img);
+      this.$root.$emit('postGiphy', img);
+      this.hideCards();
+    },
+    showCards: function showCards() {
+      this.show = true;
+    },
+    hideCards: function hideCards() {
+      this.show = false;
     }
   }
 });
@@ -56135,16 +56164,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "card p-2 m-2" }, [
+    _c("p", { staticClass: "h6" }, [
+      _vm._v("@" + _vm._s(_vm.username) + ": " + _vm._s(_vm.comment))
+    ]),
+    _vm._v(" "),
+    _vm.url
+      ? _c("iframe", { attrs: { src: _vm.url, frameborder: "0" } })
+      : _vm._e()
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("p", [_vm._v("this is a comment")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -56166,50 +56196,67 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    !_vm.show
-      ? _c(
-          "p",
-          { staticClass: "btn btn-primary", on: { click: _vm.showForm } },
-          [_vm._v("Comment")]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.show
-      ? _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.comment,
-              expression: "comment"
-            }
-          ],
-          staticClass: "form-control m-2",
-          attrs: { type: "text", placeholder: "Comment" },
-          domProps: { value: _vm.comment },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.comment = $event.target.value
-            }
+  return _c(
+    "div",
+    [
+      _vm._l(_vm.comments, function(comment) {
+        return _c("CommentCard", {
+          key: comment[0].id,
+          attrs: {
+            comment: comment[0].content,
+            username: comment[1],
+            url: comment[0].giphy_url
           }
         })
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.show
-      ? _c(
-          "p",
-          {
-            staticClass: "btn btn-primary m-2",
-            on: { click: _vm.saveComment }
-          },
-          [_vm._v("Comment")]
-        )
-      : _vm._e()
-  ])
+      }),
+      _vm._v(" "),
+      !_vm.show
+        ? _c(
+            "p",
+            { staticClass: "btn btn-primary", on: { click: _vm.showForm } },
+            [_vm._v("Comment")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.show
+        ? _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.content,
+                expression: "content"
+              }
+            ],
+            staticClass: "form-control m-2",
+            attrs: { type: "text", placeholder: "Comment" },
+            domProps: { value: _vm.content },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.content = $event.target.value
+              }
+            }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.show
+        ? _c(
+            "p",
+            {
+              staticClass: "btn btn-primary m-2",
+              on: { click: _vm.saveComment }
+            },
+            [_vm._v("Comment")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.show ? _c("Giphy") : _vm._e()
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -56313,29 +56360,35 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row m-3 p-3" },
-      _vm._l(_vm.imgs, function(img) {
-        return _c("div", { key: img, staticClass: "col-auto card p-2 m-2" }, [
-          _c("iframe", { attrs: { src: img, frameborder: "0" } }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "m-2 btn btn-secondary",
-              on: {
-                click: function($event) {
-                  return _vm.postGiphy(img)
-                }
-              }
-            },
-            [_vm._v("Post")]
-          )
-        ])
-      }),
-      0
-    )
+    _vm.show
+      ? _c(
+          "div",
+          { staticClass: "row m-3 p-3" },
+          _vm._l(_vm.imgs, function(img) {
+            return _c(
+              "div",
+              { key: img, staticClass: "col-auto card p-2 m-2" },
+              [
+                _c("iframe", { attrs: { src: img, frameborder: "0" } }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "m-2 btn btn-secondary",
+                    on: {
+                      click: function($event) {
+                        return _vm.postGiphy(img)
+                      }
+                    }
+                  },
+                  [_vm._v("Post")]
+                )
+              ]
+            )
+          }),
+          0
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

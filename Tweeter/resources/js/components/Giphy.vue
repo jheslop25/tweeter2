@@ -5,7 +5,7 @@
       <input type="text" placeholder="search" class="form-control col-5 mx-2" v-model="query" />
       <button class="btn btn-primary col-2" @click="getGif">get giphy</button>
     </div>
-    <div class="row m-3 p-3">
+    <div class="row m-3 p-3" v-if="show">
       <div v-for="img in imgs" v-bind:key="img" class="col-auto card p-2 m-2">
         <iframe :src="img" frameborder="0"></iframe>
         <button class="m-2 btn btn-secondary" @click="postGiphy(img)">Post</button>
@@ -20,7 +20,8 @@ export default {
   data() {
     return {
       query: "",
-      imgs: [] //an empty array soon to be filled with urls
+      imgs: [], //an empty array soon to be filled with urls
+        show: false
     };
   },
   methods: {
@@ -34,6 +35,7 @@ export default {
           console.log(result.data.data[0].embed_url);
           for (var i = 0; i < 4; i++) {
             this.imgs.push(result.data.data[i].embed_url);
+            this.showCards();
           }
         })
         .catch(err => {
@@ -42,6 +44,14 @@ export default {
     },
     postGiphy(img) {
       console.log(img);
+      this.$root.$emit('postGiphy', img);
+      this.hideCards();
+    },
+    showCards(){
+        this.show = true;
+    },
+    hideCards(){
+        this.show = false;
     }
   }
 };

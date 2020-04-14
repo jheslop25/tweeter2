@@ -20,7 +20,7 @@ class tweetCommentsController extends Controller
                 $comment->content = $request->input['comment'];
                 $comment->giphy_url = $request->input['giphy_url'];
                 $comment->save();
-                return response()->json(['msg' => $request->input['comment']]);
+                return response()->json(['msg' => $request->input['comment'], 'name' => Auth::user()->name, 'giphy_url' => $request->input['giphy_url']]);
             //}
         } else {
             return back();

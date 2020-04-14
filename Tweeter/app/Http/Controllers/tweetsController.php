@@ -168,7 +168,14 @@ class tweetsController extends Controller
                     $comments = [];
                     $id = $tweet->id;
                     $comment = \App\Comments::where('tweet_id', $id)->get();
-                    array_push($comments, $comment);
+                    foreach( $comment as $item){
+                        $user = \App\User::find($item->user_id);
+                        $name = $user->name;
+                        $pkg = [];
+                        array_push($pkg, $item);
+                        array_push($pkg, $name);
+                        array_push($comments, $pkg);
+                    }
                     array_push($whole, $comments);
                     if(sizeof(\App\Likes::where('user_id', Auth::user()->id)->get()) > 0){
                         $liked = true;
