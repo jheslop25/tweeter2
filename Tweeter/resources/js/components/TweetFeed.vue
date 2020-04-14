@@ -32,18 +32,18 @@
         data(){
             return {
                 tweets: [],
+                page: 1
             }
         },
         methods: {
             getTweets: function(){
-                axios.post('/ajax/tweets',{
-                    input: {
-                        msg: 'give me some tweets'
-                    }
+                axios.post('/ajax/tweets?page='+this.page,{
+                    input: 3
                 }).then((result) => {
                     console.log(result.data);
-                    this.tweets = result.data.tweets;
+                    this.tweets.push(result.data.tweets);
                     //this.$root.$emit('tweets');
+                    this.page++;
                 }).catch((err) => {
                     console.log(err);
                 });
