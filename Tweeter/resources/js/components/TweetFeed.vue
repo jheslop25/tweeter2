@@ -14,6 +14,7 @@
             :comments="tweet[3]"
             :hasliked="tweet[4]"
             :likes="tweet[2]"
+            :owner="tweet[5]"
         />
         <p @click="getTweets">this is a tweet feed</p>
     </div>

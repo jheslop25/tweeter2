@@ -177,6 +177,13 @@ class tweetsController extends Controller
                         $liked = false;
                         array_push($whole, $liked);
                     }
+                    if($tweet->user_id == Auth::user()->id){
+                        $owner = true;
+                        array_push($whole, $owner);
+                    } else {
+                        $owner = false;
+                        array_push($whole, $owner);
+                    }
                     array_push($tweets, $whole);
                 }
             }
