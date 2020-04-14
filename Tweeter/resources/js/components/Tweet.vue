@@ -11,15 +11,13 @@
     <div class="row">
       <like class="col-3" :hasliked="this.hasliked" :tweetid="this.id" :likes="this.likes" />
     </div>
-    <comments :comments="this.comments" />
-    <Giphy/>
+    <comments :comments="this.comments" :tweetid="this.id" />
   </div>
 </template>
 
 <script>
 import Like from "./Like.vue";
 import Comments from "./Comments.vue";
-import Giphy from './Giphy.vue';
 export default {
   name: "Tweet",
   props: {
@@ -49,8 +47,7 @@ export default {
   },
   components: {
     Like,
-    Comments,
-    Giphy
+    Comments
   }
 };
 </script>

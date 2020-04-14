@@ -1,5 +1,6 @@
 <template>
     <div>
+        <MakeTweet/>
         <Tweet
             v-for="tweet in tweets"
             v-bind:key="tweet[1].content"
@@ -22,7 +23,7 @@
 
 <script>
     import Tweet from './Tweet.vue';
-
+    import MakeTweet from './MakeTweet.vue';
     export default {
         name: 'TweetFeed',
         props: {
@@ -55,7 +56,8 @@
             // });
         },
         components: {
-            Tweet
+            Tweet,
+            MakeTweet
         }
     }
 </script>

@@ -192,4 +192,54 @@ class tweetsController extends Controller
             return response()->json(['msg' => 'no follows'], 404);
         }
     }
+
+    public function ajaxCreate(Request $request){
+        // a function to make or update a tweet with ajax
+        $tweet = new \App\Tweets();
+        $tweet->user_id = $request->user()->id;
+        $tweet->content = $request->input['content'];
+
+        $tweet->save();
+
+        return response()->json(['msg' => 'you created/updated a tweet'],200);
+    }
+
+    public function userTweets(Request $request){
+        // a function to show all of a user's tweets on their profile page
+        $tweets = [];
+
+                $getTweets = \App\Tweets::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(15);
+
+                //var_dump($tweets);
+                foreach ($getTweets as $tweet) {
+                    $whole = [];
+                    $user = \App\User::find($tweet->user_id);
+                    $likes = sizeOf(\App\Likes::where('tweet_id', $tweet->id)->get());
+                    array_push($whole, $user);
+                    array_push($whole, $tweet);
+                    array_push($whole, $likes);
+                    $comments = [];
+                    $id = $tweet->id;
+                    $comment = \App\Comments::where('tweet_id', $id)->get();
+                    array_push($comments, $comment);
+                    array_push($whole, $comments);
+                    if(sizeof(\App\Likes::where('user_id', Auth::user()->id)->get()) > 0){
+                        $liked = true;
+                        array_push($whole, $liked);
+                    } else {
+                        $liked = false;
+                        array_push($whole, $liked);
+                    }
+                    if($tweet->user_id == Auth::user()->id){
+                        $owner = true;
+                        array_push($whole, $owner);
+                    } else {
+                        $owner = false;
+                        array_push($whole, $owner);
+                    }
+                    array_push($tweets, $whole);
+                }
+            return response()->json(['tweets' => $tweets], 200);
+
+    }
 }

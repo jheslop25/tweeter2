@@ -17,6 +17,7 @@ class UpdateTweetsTable extends Migration
             $table->string('orig_tweeter_name')->nullable();
             $table->timestamp('orig_created_at')->nullable();
             $table->string('tweet_photo')->nullable();
+            $table->string('giphy_url')->nullable();
         });
     }
 

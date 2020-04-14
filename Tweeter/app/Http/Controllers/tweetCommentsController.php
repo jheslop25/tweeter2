@@ -10,17 +10,18 @@ class tweetCommentsController extends Controller
     public function createComment(Request $request){
         // verify input, AUTH, and passes values to model
         if(Auth::check()){
-            if($request->validate([
-                'comment' => 'required | min:3 | max: 255',
-                'tweetId' => 'required'
-            ])){
+            // if($request->validate([
+            //     'comment' => 'required | min:3 | max: 255',
+            //     'tweetId' => 'required'
+            // ])){
                 $comment = new \App\Comments;
                 $comment->user_id = Auth::user()->id;
-                $comment->tweet_id = $request->tweetId;
-                $comment->content = $request->comment;
+                $comment->tweet_id = $request->input['tweetId'];
+                $comment->content = $request->input['comment'];
+                $comment->giphy_url = $request->input['giphy_url'];
                 $comment->save();
-                return redirect("/tweets/view/$comment->tweet_id");
-            }
+                return response()->json(['msg' => $request->input['comment']]);
+            //}
         } else {
             return back();
         }

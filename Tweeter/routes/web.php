@@ -29,15 +29,14 @@ Route::post('/username', 'HomeController@username');
 
 Route::get('/tweets', 'tweetsController@showAllFollowed');
 
-Route::post('/tweets/create', 'tweetsController@createTweet');
+Route::post('/tweets/create', 'tweetsController@ajaxCreate');
 
-Route::get('/tweets/goToEdit/{id}', 'tweetsController@returnEdit');
 
 Route::post('/tweets/update', 'tweetsController@updateTweet');
 
 Route::post('/tweets/destroy', 'tweetsController@destroyTweet');
 
-Route::get('/tweets/view/{tweet_id}', 'tweetsController@viewTweet');
+Route::post('/tweets/profile', 'tweetsController@userTweets');
 
 Route::post('/retweet', 'tweetsController@retweet');
 
