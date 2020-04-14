@@ -2024,11 +2024,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Giphy",
   data: function data() {
     return {
-      query: '',
+      query: "",
       imgs: [] //an empty array soon to be filled with urls
 
     };
@@ -2037,18 +2041,21 @@ __webpack_require__.r(__webpack_exports__);
     getGif: function getGif() {
       var _this = this;
 
-      var url = 'http://api.giphy.com/v1/gifs/search?';
-      var key = '&api_key=6iUCmCf2fRy9WF0QQTTTXlqzEctM7YOj';
-      var q = 'q=' + this.query;
+      var url = "http://api.giphy.com/v1/gifs/search?";
+      var key = "&api_key=6iUCmCf2fRy9WF0QQTTTXlqzEctM7YOj";
+      var q = "q=" + this.query;
       axios.get(url + q + key).then(function (result) {
         console.log(result.data.data[0].embed_url);
 
-        for (var i = 0; i < 3; i++) {
+        for (var i = 0; i < 4; i++) {
           _this.imgs.push(result.data.data[i].embed_url);
         }
       })["catch"](function (err) {
-        console.log('somethign went wrong ' + err);
+        console.log("somethign went wrong " + err);
       });
+    },
+    postGiphy: function postGiphy(img) {
+      console.log(img);
     }
   }
 });
@@ -6898,7 +6905,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "iframe[data-v-1b84daf8] {\n  width: 150px;\n  height: 150px;\n}", ""]);
+exports.push([module.i, "iframe[data-v-1b84daf8] {\n  width: 100%;\n  height: 100%;\n}", ""]);
 
 // exports
 
@@ -56223,39 +56230,56 @@ var render = function() {
   return _c("div", [
     _c("p", [_vm._v("Please select a giphy")]),
     _vm._v(" "),
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.query,
-          expression: "query"
-        }
-      ],
-      staticClass: "form-input",
-      attrs: { type: "text", placeholder: "search" },
-      domProps: { value: _vm.query },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
+    _c("div", { staticClass: "row" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.query,
+            expression: "query"
           }
-          _vm.query = $event.target.value
+        ],
+        staticClass: "form-control col-5 mx-2",
+        attrs: { type: "text", placeholder: "search" },
+        domProps: { value: _vm.query },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.query = $event.target.value
+          }
         }
-      }
-    }),
-    _vm._v(" "),
-    _c("button", { on: { click: _vm.getGif } }, [_vm._v("get giphy")]),
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary col-2", on: { click: _vm.getGif } },
+        [_vm._v("get giphy")]
+      )
+    ]),
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "row" },
+      { staticClass: "row m-3 p-3" },
       _vm._l(_vm.imgs, function(img) {
-        return _c("iframe", {
-          key: img,
-          staticClass: "col",
-          attrs: { src: img }
-        })
+        return _c("div", { key: img, staticClass: "col-auto card p-2 m-2" }, [
+          _c("iframe", { attrs: { src: img, frameborder: "0" } }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "m-2 btn btn-secondary",
+              on: {
+                click: function($event) {
+                  return _vm.postGiphy(img)
+                }
+              }
+            },
+            [_vm._v("Post")]
+          )
+        ])
       }),
       0
     )
