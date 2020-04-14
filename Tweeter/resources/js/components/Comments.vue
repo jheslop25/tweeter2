@@ -25,7 +25,14 @@ export default {
         })
         .then(result => {
           console.log(result.data.msg);
-          this.comments.push([[result.data.msg, result.data.name, result.data.giphy_url]]);
+          let comment = {
+              0: {
+                content: result.data.msg,
+                giphy_url: result.data.giphy_url
+                },
+              1: result.data.name,
+          };
+          this.comments.push(comment.toArray());
         })
         .catch(err => {
             console.log(err);

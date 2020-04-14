@@ -1963,8 +1963,15 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (result) {
         console.log(result.data.msg);
+        var comment = {
+          0: {
+            content: result.data.msg,
+            giphy_url: result.data.giphy_url
+          },
+          1: result.data.name
+        };
 
-        _this.comments.push([[result.data.msg, result.data.name, result.data.giphy_url]]);
+        _this.comments.push(comment.toArray());
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2189,7 +2196,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.displayCond = true;
 
-        _this.$root.$emit('addCount');
+        _this.$root.$emit('addCount' + _this.tweetid);
       });
     },
     unlikeTweet: function unlikeTweet() {
@@ -2202,7 +2209,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.displayCond = false;
 
-        _this2.$root.$emit('lowerCount');
+        _this2.$root.$emit('lowerCount' + _this2.tweetid);
       });
     }
   },
@@ -2229,7 +2236,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'LikeCounter',
   props: {
-    likescount: Number
+    likescount: Number,
+    tweetid: Number
   },
   data: function data() {
     return {
@@ -2250,8 +2258,8 @@ __webpack_require__.r(__webpack_exports__);
     //     let likeCount = this.getLikes();
     //     this.likes = likeCount;
     // })
-    this.$root.$on('addCount', this.addOne);
-    this.$root.$on('lowerCount', this.subOne);
+    this.$root.$on('addCount' + this.tweetid, this.addOne);
+    this.$root.$on('lowerCount' + this.tweetid, this.subOne);
   }
 });
 
@@ -56473,7 +56481,9 @@ var render = function() {
           { staticClass: "btn btn-success mt-1", on: { click: _vm.likeTweet } },
           [
             _vm._v("Like ("),
-            _c("LikeCounter", { attrs: { likescount: this.likes } }),
+            _c("LikeCounter", {
+              attrs: { likescount: this.likes, tweetid: _vm.tweetid }
+            }),
             _vm._v(")")
           ],
           1
@@ -56486,7 +56496,9 @@ var render = function() {
           },
           [
             _vm._v("Unlike ("),
-            _c("LikeCounter", { attrs: { likescount: this.likes } }),
+            _c("LikeCounter", {
+              attrs: { likescount: this.likes, tweetid: _vm.tweetid }
+            }),
             _vm._v(")")
           ],
           1

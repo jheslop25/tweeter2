@@ -6,7 +6,8 @@
     export default {
         name: 'LikeCounter',
         props: {
-            likescount: Number
+            likescount: Number,
+            tweetid: Number
         },
         data(){
             return {
@@ -27,8 +28,8 @@
             //     let likeCount = this.getLikes();
             //     this.likes = likeCount;
             // })
-            this.$root.$on('addCount', this.addOne);
-            this.$root.$on('lowerCount', this.subOne);
+            this.$root.$on('addCount'+this.tweetid, this.addOne);
+            this.$root.$on('lowerCount'+this.tweetid, this.subOne);
         }
     }
 </script>

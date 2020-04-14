@@ -1,7 +1,7 @@
 <template>
     <div>
-        <p v-if="!displayCond" class="btn btn-success mt-1" @click='likeTweet'>Like (<LikeCounter :likescount="this.likes"/>)</p>
-        <p v-else class="btn btn-danger mt-1" @click="unlikeTweet">Unlike (<LikeCounter :likescount="this.likes"/>)</p>
+        <p v-if="!displayCond" class="btn btn-success mt-1" @click='likeTweet'>Like (<LikeCounter :likescount="this.likes" :tweetid="tweetid"/>)</p>
+        <p v-else class="btn btn-danger mt-1" @click="unlikeTweet">Unlike (<LikeCounter :likescount="this.likes" :tweetid="tweetid"/>)</p>
     </div>
 </template>
 
@@ -31,7 +31,7 @@
                     console.log(response);
                     //document.getElementById("likes-counter").innerHTML = 'you liked this tweet!';
                     this.displayCond = true;
-                    this.$root.$emit('addCount');
+                    this.$root.$emit('addCount'+this.tweetid);
                 });
             },
             unlikeTweet: function(){
@@ -41,7 +41,7 @@
                     console.log(response);
                     //document.getElementById("likes-counter").innerHTML = 'you unliked this tweet!';
                     this.displayCond = false;
-                    this.$root.$emit('lowerCount');
+                    this.$root.$emit('lowerCount'+this.tweetid);
                 })
             }
         },

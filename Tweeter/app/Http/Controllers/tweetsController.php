@@ -177,7 +177,7 @@ class tweetsController extends Controller
                         array_push($comments, $pkg);
                     }
                     array_push($whole, $comments);
-                    if(sizeof(\App\Likes::where('user_id', Auth::user()->id)->get()) > 0){
+                    if(sizeof(\App\Likes::where('user_id', Auth::user()->id)->where('tweet_id', $tweet->id)->get()) > 0){
                         $liked = true;
                         array_push($whole, $liked);
                     } else {
