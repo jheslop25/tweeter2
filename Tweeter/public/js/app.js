@@ -1955,6 +1955,7 @@ __webpack_require__.r(__webpack_exports__);
     saveComment: function saveComment(img) {
       var _this = this;
 
+      console.log(img);
       axios.post("/tweets/comment/create", {
         input: {
           tweetId: this.tweetid,
@@ -1971,7 +1972,7 @@ __webpack_require__.r(__webpack_exports__);
           1: result.data.name
         };
 
-        _this.comments.push(comment.toArray());
+        _this.commentsData.push(comment.toArray());
       })["catch"](function (err) {
         console.log(err);
       });
@@ -1982,9 +1983,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      content: "",
+      content: "   ",
       show: false,
-      giphy_url: null
+      giphy_url: null,
+      commentsData: this.comments
     };
   },
   components: {
@@ -2067,7 +2069,8 @@ __webpack_require__.r(__webpack_exports__);
       query: "",
       imgs: [],
       //an empty array soon to be filled with urls
-      show: false
+      show: false,
+      index: 0
     };
   },
   methods: {
@@ -59051,7 +59054,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._l(_vm.comments, function(comment) {
+      _vm._l(_vm.commentsData, function(comment) {
         return _c("CommentCard", {
           key: comment[0].id,
           attrs: {

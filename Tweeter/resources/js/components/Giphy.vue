@@ -21,7 +21,8 @@ export default {
     return {
       query: "",
       imgs: [], //an empty array soon to be filled with urls
-        show: false
+        show: false,
+        index: 0
     };
   },
   methods: {
