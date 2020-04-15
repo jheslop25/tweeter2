@@ -82,6 +82,7 @@
             <div>
                 @yield('content')
             </div>
+            <p id="get-tweets"></p>
         </main>
     </div>
     <div id="footer" class="navbar navbar-expand-md navbar-light bg-primary shadow-sm mt-5 align-self-end">@include('footer')</div>
