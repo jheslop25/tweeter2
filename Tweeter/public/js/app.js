@@ -2422,20 +2422,21 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      tweets: []
+      tweets: [],
+      page: 1
     };
   },
   methods: {
     getTweets: function getTweets() {
       var _this = this;
 
-      axios.post('/ajax/tweets', {
-        input: {
-          msg: 'give me some tweets'
-        }
+      axios.post('/ajax/tweets?page=' + this.page, {
+        input: 3
       }).then(function (result) {
         console.log(result.data);
         _this.tweets = result.data.tweets; //this.$root.$emit('tweets');
+
+        _this.page++;
       })["catch"](function (err) {
         console.log(err);
       });

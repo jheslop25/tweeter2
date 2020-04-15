@@ -41,7 +41,7 @@
                     input: 3
                 }).then((result) => {
                     console.log(result.data);
-                    this.tweets.push(result.data.tweets);
+                    this.tweets = result.data.tweets;
                     //this.$root.$emit('tweets');
                     this.page++;
                 }).catch((err) => {
