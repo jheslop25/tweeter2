@@ -46,6 +46,7 @@ Vue.component('Home', require('./components/Home.vue').default);
 Vue.component('Like', require('./components/Like.vue').default);
 Vue.component('Tweet', require('./components/Tweet.vue').default);
 Vue.component('tweet-feed', require('./components/TweetFeed.vue').default);
+Vue.component('ProfileFeed', require('./components/ProfileFeed.vue').default);
 
 const app = new Vue({
     el: '#app',
