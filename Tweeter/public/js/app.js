@@ -2148,6 +2148,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
@@ -7195,7 +7197,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#main[data-v-f2b6376c] {\n  width: 100vw;\n  min-height: 75vh;\n}", ""]);
+exports.push([module.i, "#main[data-v-f2b6376c] {\n  width: 100vw;\n  min-height: 90vh;\n  display: grid;\n  grid-template-rows: 5vh 95vh 90vh;\n  grid-template-columns: 1fr;\n  justify-items: center;\n}\n#header[data-v-f2b6376c] {\n  width: 100vw;\n  height: 5vh;\n  background-color: primary;\n}\n#top[data-v-f2b6376c] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 5vh;\n  padding: auto;\n}\n#foshiz[data-v-f2b6376c] {\n  display: grid;\n  grid-template-columns: 1fr;\n  grid-template-rows: 1fr;\n  margin: 0;\n  justify-items: center;\n}\n#bubble[data-v-f2b6376c] {\n  position: relative;\n  top: 155px;\n  font-size: 25px;\n}\n@media screen and (max-width: 490px) {\n#bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 145px;\n    font-size: 23px;\n}\n}\n@media screen and (max-width: 450px) {\n#bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 135px;\n    font-size: 21px;\n}\n}\n@media screen and (max-width: 410px) {\n#bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 125px;\n    font-size: 20px;\n}\n}\n@media screen and (max-width: 370px) {\n#bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 115px;\n    font-size: 20px;\n}\n}", ""]);
 
 // exports
 
@@ -59424,29 +59426,42 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container", attrs: { id: "main" } }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col" }, [
-        _c("img", { attrs: { src: _vm.logo, alt: "" } }),
+  return _c("div", { attrs: { id: "main" } }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { attrs: { id: "top" } }, [
+      _c("div", { attrs: { id: "foshiz" } }, [
+        _c("p", { attrs: { id: "bubble" } }, [_vm._v(_vm._s(_vm.getHead))]),
+        _vm._v(" "),
+        _c("img", {
+          staticClass: "img-fluid",
+          attrs: { id: "eagle", src: _vm.logo }
+        }),
         _vm._v(" "),
         _c("div", { staticClass: "m-3", attrs: { id: "headline" } }, [
-          _c("p", { staticClass: "h1 m-1" }, [_vm._v(_vm._s(_vm.getHead))]),
-          _vm._v(" "),
           _c("p", { staticClass: "h4 m-1" }, [_vm._v(_vm._s(_vm.getSub))]),
           _vm._v(" "),
-          _vm._m(0)
+          _vm._m(1)
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "m-4", attrs: { id: "marketing" } }, [
-        _c("p", [_vm._v(_vm._s(_vm.getMarkOne))]),
-        _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.getMarkTwo))])
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "m-4", attrs: { id: "marketing" } }, [
+      _c("p", [_vm._v(_vm._s(_vm.getMarkOne))]),
+      _vm._v(" "),
+      _c("p", [_vm._v(_vm._s(_vm.getMarkTwo))])
     ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "bg-primary", attrs: { id: "header" } }, [
+      _c("p", [_vm._v("FoShizzle")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -73066,7 +73081,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_0__["default"].Store({
   //store options
   state: {
     //some data here
-    headline: 'FoShizzle',
+    headline: 'FoShizzle*',
     subHead: 'for sh*ts and giggles',
     marketingOne: 'FoShizzle is an app for you to connect with your closest friends, and share things for sh*ts and giggles.',
     marketingTwo: 'FoShizzle aspires to be a haven for the ridiculous, absurd, and comical.'
@@ -74049,8 +74064,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /projects/Tweeter3/tweeter2/Tweeter/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /projects/Tweeter3/tweeter2/Tweeter/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /projects/tweeter2/Tweeter/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /projects/tweeter2/Tweeter/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

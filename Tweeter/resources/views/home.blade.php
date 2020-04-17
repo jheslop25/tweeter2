@@ -15,7 +15,7 @@
 
 <body>
     <div id="app">
-        <home logo="{{ url('/logo.png')}}" />
+        <home logo="{{ url('/eagle-clear.png')}}" />
     </div>
     <script src="{{ asset('js/app.js') }}" ></script>
 </body>

@@ -11,7 +11,7 @@ const store = new Vuex.Store({
     //store options
     state: {
         //some data here
-        headline: 'FoShizzle',
+        headline: 'FoShizzle*',
         subHead: 'for sh*ts and giggles',
         marketingOne: 'FoShizzle is an app for you to connect with your closest friends, and share things for sh*ts and giggles.',
         marketingTwo: 'FoShizzle aspires to be a haven for the ridiculous, absurd, and comical.',
