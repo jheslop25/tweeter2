@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="container">
     <MakeTweet />
-    <ProfileFeed class="container" :logourl="logourl" :userid="userid" />
+    <ProfileFeed :logourl="logourl" :userid="userid" />
   </div>
 </template>
 

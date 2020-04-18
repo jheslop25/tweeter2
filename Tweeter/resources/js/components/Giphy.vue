@@ -3,7 +3,7 @@
     <p>Please select a giphy</p>
     <div class="row">
       <input type="text" placeholder="search" class="form-control col-5 mx-2" v-model="query" />
-      <button class="btn btn-primary col-2" @click="getGif">get giphy</button>
+      <button class="btn btn-primary col-5" @click="getGif">get giphy</button>
     </div>
     <div class="row m-3 p-3" v-if="show">
       <div v-for="item in imgs" v-bind:key="item" class="col-auto card p-2 m-2">

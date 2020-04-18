@@ -1986,7 +1986,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   },
   data: function data() {
     return {
-      content: "   ",
+      content: null,
       show: false,
       giphy_url: null,
       commentsData: this.comments
@@ -2428,6 +2428,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var scrollmagic__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! scrollmagic */ "./node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js");
 /* harmony import */ var scrollmagic__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(scrollmagic__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Tweet_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Tweet.vue */ "./resources/js/components/Tweet.vue");
+//
 //
 //
 //
@@ -59289,7 +59290,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control m-2",
-            attrs: { type: "text", placeholder: "Comment" },
+            attrs: { type: "text", placeholder: "Make a Comment" },
             domProps: { value: _vm.content },
             on: {
               input: function($event) {
@@ -59415,7 +59416,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "button",
-        { staticClass: "btn btn-primary col-2", on: { click: _vm.getGif } },
+        { staticClass: "btn btn-primary col-5", on: { click: _vm.getGif } },
         [_vm._v("get giphy")]
       )
     ]),
@@ -59686,7 +59687,7 @@ var render = function() {
             expression: "content"
           }
         ],
-        staticClass: "form-control m-3 col-4",
+        staticClass: "form-control m-3 col-6",
         attrs: { type: "text", placeholder: "What's on your mind?" },
         domProps: { value: _vm.content },
         on: {
@@ -59702,7 +59703,7 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "btn btn-primary my-3 col-2",
+          staticClass: "btn btn-primary my-3 col-4",
           on: { click: _vm.makeTweet }
         },
         [_vm._v("Tweet!")]
@@ -59734,13 +59735,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "container" },
     [
       _c("MakeTweet"),
       _vm._v(" "),
-      _c("ProfileFeed", {
-        staticClass: "container",
-        attrs: { logourl: _vm.logourl, userid: _vm.userid }
-      })
+      _c("ProfileFeed", { attrs: { logourl: _vm.logourl, userid: _vm.userid } })
     ],
     1
   )
@@ -59852,7 +59851,7 @@ var render = function() {
         { staticClass: "row" },
         [
           _c("like", {
-            staticClass: "col-3",
+            staticClass: "col-5",
             attrs: {
               hasliked: this.hasliked,
               tweetid: this.id,

@@ -2,7 +2,7 @@
   <div>
     <CommentCard v-for="comment in commentsData" v-bind:key="comment[0].id" :comment="comment[0].content" :username="comment[1]" :url="comment[0].giphy_url" />
     <p v-if="!show" class="btn btn-primary" @click="showForm">Comment</p>
-    <input class="form-control m-2" v-if="show" v-model="content" type="text" placeholder="Comment" />
+    <input class="form-control m-2" v-if="show" v-model="content" type="text" placeholder="Make a Comment" />
     <p class="btn btn-primary m-2" v-if="show" @click="saveComment">Comment</p>
     <Giphy v-if="show" :id="this.tweetid"/>
   </div>
@@ -48,7 +48,7 @@ export default {
   },
   data() {
     return {
-      content: "   ",
+      content: null,
       show: false,
       giphy_url: null,
       commentsData: this.comments

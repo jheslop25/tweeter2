@@ -9,7 +9,7 @@
     <img id="post-img" class="img-fluid" v-if="this.photo" :src="photo" alt="a dank meme" />
     <p class="text-muted">{{this.readableDate}}</p>
     <div class="row">
-      <like class="col-3" :hasliked="this.hasliked" :tweetid="this.id" :likes="this.likes" />
+      <like class="col-5" :hasliked="this.hasliked" :tweetid="this.id" :likes="this.likes" />
     </div>
     <comments :comments="this.comments" :tweetid="this.id" />
   </div>

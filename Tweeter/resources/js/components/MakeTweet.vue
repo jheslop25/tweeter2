@@ -1,8 +1,8 @@
 <template>
    <div class="container-fluid">
         <div class="form-group row">
-        <input v-model="content" type="text" class="form-control m-3 col-4" placeholder="What's on your mind?"/>
-        <button class="btn btn-primary my-3 col-2" @click="makeTweet">Tweet!</button>
+        <input v-model="content" type="text" class="form-control m-3 col-6" placeholder="What's on your mind?"/>
+        <button class="btn btn-primary my-3 col-4" @click="makeTweet">Tweet!</button>
     </div>
    </div>
 </template>

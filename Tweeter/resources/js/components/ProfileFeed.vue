@@ -1,6 +1,7 @@
 <template>
   <div>
     <Tweet
+
       v-for="tweet in tweets"
       v-bind:key="tweet[1].id"
       :logo="logourl"
@@ -69,7 +70,7 @@ export default {
       triggerHook: "onEnter"
     })
       .addTo(controller)
-      .on("enter", function(){
+      .on("enter", function() {
         context.getTweets();
       });
     // });
