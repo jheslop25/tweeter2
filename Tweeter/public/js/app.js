@@ -2163,6 +2163,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
@@ -7243,7 +7244,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#main[data-v-f2b6376c] {\n  width: 100vw;\n  min-height: 90vh;\n  display: grid;\n  grid-template-rows: 5vh 95vh 40vh 40vh 5vh;\n  grid-template-columns: 1fr;\n  justify-items: center;\n}\n#header[data-v-f2b6376c] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0vh;\n  width: 100vw;\n  height: 5vh;\n  background-color: primary;\n}\n#top[data-v-f2b6376c] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: -5vh;\n  padding: auto;\n}\n#foshiz[data-v-f2b6376c] {\n  display: grid;\n  grid-template-columns: 1fr;\n  grid-template-rows: 1fr;\n  margin: 0;\n  justify-items: center;\n}\n.bubble[data-v-f2b6376c] {\n  position: relative;\n  top: 155px;\n  font-size: 25px;\n}\n#headline[data-v-f2b6376c] {\n  display: grid;\n  justify-items: center;\n}\n#buttons[data-v-f2b6376c] {\n  display: grid;\n  justify-items: center;\n}\n#marketing1[data-v-f2b6376c],\n#marketing2[data-v-f2b6376c] {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr;\n  grid-template-rows: 1fr;\n}\n.hide[data-v-f2b6376c] {\n  display: none;\n}\n@media screen and (max-width: 490px) {\n.small-eagle[data-v-f2b6376c] {\n    margin-top: 10vh;\n    width: 300px;\n    height: 300px;\n    -webkit-transition: width 1s ease-in;\n    transition: width 1s ease-in;\n}\n.small-bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 185px;\n    font-size: 18px;\n}\n.bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 145px;\n    font-size: 23px;\n}\n#marketing1[data-v-f2b6376c] {\n    display: grid;\n    grid-template-columns: 1fr;\n    grid-template-rows: minmax(20vh, 1fr) 0vh 0vh;\n}\n#marketing2[data-v-f2b6376c] {\n    display: grid;\n    grid-template-columns: 1fr;\n    grid-template-rows: 0vh 0vh minmax(20vh, 1fr);\n}\n#main[data-v-f2b6376c] {\n    width: 100vw;\n    min-height: 90vh;\n    display: grid;\n    grid-template-rows: 5vh 95vh 20vh 20vh;\n    grid-template-columns: 1fr;\n    justify-items: center;\n}\n}\n@media screen and (max-width: 450px) {\n.bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 135px;\n    font-size: 21px;\n}\n}\n@media screen and (max-width: 410px) {\n.bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 125px;\n    font-size: 20px;\n}\n}\n@media screen and (max-width: 370px) {\n.bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 115px;\n    font-size: 20px;\n}\n}", ""]);
+exports.push([module.i, "#main[data-v-f2b6376c] {\n  width: 100vw;\n  min-height: 90vh;\n  display: grid;\n  grid-template-rows: 8vh 100vh 40vh 40vh 5vh;\n  grid-template-columns: 1fr;\n  justify-items: center;\n}\n#header[data-v-f2b6376c] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0vh;\n  width: 100vw;\n  height: 8vh;\n  background-color: primary;\n}\n#top[data-v-f2b6376c] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: -5vh;\n  padding: auto;\n}\n#foshiz[data-v-f2b6376c] {\n  display: grid;\n  grid-template-columns: 1fr;\n  grid-template-rows: 1fr;\n  margin: 0;\n  justify-items: center;\n}\n.bubble[data-v-f2b6376c] {\n  position: relative;\n  top: 155px;\n  font-size: 25px;\n}\n#headline[data-v-f2b6376c] {\n  display: grid;\n  justify-items: center;\n  width: 75vw;\n}\n#buttons[data-v-f2b6376c] {\n  display: grid;\n  justify-items: center;\n}\n#marketing1[data-v-f2b6376c],\n#marketing2[data-v-f2b6376c] {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr;\n  grid-template-rows: 1fr;\n}\n.hide[data-v-f2b6376c] {\n  display: none;\n}\n@media screen and (max-width: 490px) {\n.small-eagle[data-v-f2b6376c] {\n    margin-top: 10vh;\n    width: 300px;\n    height: 300px;\n    -webkit-transition: width 2s ease-in;\n    transition: width 2s ease-in;\n}\n.small-bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 185px;\n    font-size: 18px;\n}\n.bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 145px;\n    font-size: 23px;\n}\n#marketing1[data-v-f2b6376c] {\n    display: grid;\n    grid-template-columns: 1fr;\n    grid-template-rows: minmax(20vh, 1fr) 0vh 0vh;\n}\n#marketing2[data-v-f2b6376c] {\n    display: grid;\n    grid-template-columns: 1fr;\n    grid-template-rows: 0vh 0vh minmax(20vh, 1fr);\n}\n#main[data-v-f2b6376c] {\n    width: 100vw;\n    min-height: 90vh;\n    display: grid;\n    grid-template-rows: 5vh 95vh 20vh 20vh;\n    grid-template-columns: 1fr;\n    justify-items: center;\n}\n}\n@media screen and (max-width: 450px) {\n.bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 135px;\n    font-size: 21px;\n}\n}\n@media screen and (max-width: 410px) {\n.bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 125px;\n    font-size: 20px;\n}\n}\n@media screen and (max-width: 370px) {\n.bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 115px;\n    font-size: 20px;\n}\n}", ""]);
 
 // exports
 
@@ -59223,7 +59224,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card p-2 m-2" }, [
+  return _c("div", { staticClass: "card p-2 m-2 w-75" }, [
     _c("p", { staticClass: "h6" }, [
       _vm._v("@" + _vm._s(_vm.username) + ": " + _vm._s(_vm.comment))
     ]),
@@ -59491,17 +59492,29 @@ var render = function() {
             _vm._v(_vm._s(_vm.getSub))
           ]),
           _vm._v(" "),
-          _c("div", { attrs: { id: "buttons" } }, [
+          _c("div", { staticClass: "row w-75", attrs: { id: "buttons" } }, [
             _c(
               "a",
-              { staticClass: "btn btn-primary m-1", attrs: { href: "/login" } },
+              {
+                staticClass: "btn btn-primary m-1 col-4",
+                attrs: { href: "/register" }
+              },
               [_vm._v("sign-up")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-secondary m-1 col-4",
+                attrs: { href: "/login" }
+              },
+              [_vm._v("Login")]
             ),
             _vm._v(" "),
             _c(
               "p",
               {
-                staticClass: "btn btn-danger m-1",
+                staticClass: "btn btn-danger m-1 col-4",
                 attrs: { id: "but-why" },
                 on: { click: this.changeHead }
               },
@@ -59540,9 +59553,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bg-primary", attrs: { id: "header" } }, [
-      _c("p", { staticClass: "m-2" }, [_vm._v("FoShizzle")])
-    ])
+    return _c(
+      "div",
+      {
+        staticClass: "bg-primary px-4 row align-content-center",
+        attrs: { id: "header" }
+      },
+      [_c("p", { staticClass: "m-2 h5 text-light" }, [_vm._v("FoShizzle")])]
+    )
   },
   function() {
     var _vm = this
@@ -59719,7 +59737,10 @@ var render = function() {
     [
       _c("MakeTweet"),
       _vm._v(" "),
-      _c("ProfileFeed", { attrs: { logourl: _vm.logourl, userid: _vm.userid } })
+      _c("ProfileFeed", {
+        staticClass: "container",
+        attrs: { logourl: _vm.logourl, userid: _vm.userid }
+      })
     ],
     1
   )

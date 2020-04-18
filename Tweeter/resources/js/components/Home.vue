@@ -1,7 +1,7 @@
 <template>
   <div id="main">
-    <div id="header" class="bg-primary">
-      <p class="m-2">FoShizzle</p>
+    <div id="header" class="bg-primary px-4 row align-content-center">
+      <p class="m-2 h5 text-light">FoShizzle</p>
     </div>
     <div id="top">
       <div id="foshiz">
@@ -9,9 +9,10 @@
         <img id="eagle" class="img-fluid" :src="logo" />
         <div id="headline" class="m-3">
           <p id="sub" class="h4 m-1">{{ getSub }}</p>
-          <div id="buttons">
-            <a href="/login" class="btn btn-primary m-1">sign-up</a>
-            <p id="but-why" @click="this.changeHead" class="btn btn-danger m-1">but...why?</p>
+          <div id="buttons" class="row w-75">
+            <a href="/register" class="btn btn-primary m-1 col-4">sign-up</a>
+            <a href="/login" class="btn btn-secondary m-1 col-4">Login</a>
+            <p id="but-why" @click="this.changeHead" class="btn btn-danger m-1 col-4">but...why?</p>
           </div>
         </div>
       </div>
@@ -97,7 +98,7 @@ export default {
   width: 100vw;
   min-height: 90vh;
   display: grid;
-  grid-template-rows: 5vh 95vh 40vh 40vh 5vh;
+  grid-template-rows: 8vh 100vh 40vh 40vh 5vh;
   grid-template-columns: 1fr;
   justify-items: center;
 }
@@ -105,7 +106,7 @@ export default {
   position: sticky;
   top: 0vh;
   width: 100vw;
-  height: 5vh;
+  height: 8vh;
   background-color: primary;
 }
 
@@ -131,6 +132,7 @@ export default {
 #headline {
   display: grid;
   justify-items: center;
+  width: 75vw;
 }
 
 #buttons {
@@ -156,7 +158,7 @@ export default {
     // margin-bottom: 18vh;
     width: 300px;
     height: 300px;
-    transition: width 1s ease-in;
+    transition: width 2s ease-in;
   }
   .small-bubble {
     position: relative;

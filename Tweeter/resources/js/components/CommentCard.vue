@@ -1,5 +1,5 @@
 <template>
-    <div class="card p-2 m-2">
+    <div class="card p-2 m-2 w-75">
         <p class="h6">@{{username}}: {{ comment }}</p>
         <iframe v-if="url" :src="url" frameborder="0"></iframe>
     </div>
