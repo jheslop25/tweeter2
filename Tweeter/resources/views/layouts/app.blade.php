@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="d-grid min-vh-100">
+<body class="d-grid">
     <div id="app" class="main-container-height-87">
         <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm sticky-top">
             <div class="container">
@@ -86,6 +86,6 @@
         </main>
     </div>
     <div id="footer" class="navbar navbar-expand-md navbar-light bg-primary shadow-sm mt-5 align-self-end">@include('footer')</div>
-    
+
 </body>
 </html>

@@ -2150,6 +2150,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
@@ -2169,6 +2182,39 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     logo: String
+  },
+  methods: {
+    changeHead: function changeHead() {
+      console.log("changing headline");
+      this.$store.commit("updateHeadline", "but why?");
+      setTimeout(function () {
+        var eagle = document.getElementById("eagle");
+        eagle.classList.add("small-eagle");
+        document.getElementById("marketing1").scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+        document.getElementById("but-why").classList.add("hide");
+        var bubble = document.getElementById("bubble");
+
+        if (screen.width <= 490) {
+          bubble.classList.remove("bubble");
+        }
+
+        bubble.classList.add("small-bubble");
+        document.getElementById("sub").classList.add("hide");
+      }, 300);
+    }
+  },
+  mounted: function mounted() {
+    var context = this;
+    var controller = new scrollmagic__WEBPACK_IMPORTED_MODULE_0___default.a.Controller();
+    var sceneOne = new scrollmagic__WEBPACK_IMPORTED_MODULE_0___default.a.Scene({
+      triggerElement: "#footer",
+      triggerHook: "onEnter"
+    }).addTo(controller).on("enter", function () {
+      context.changeHead();
+    });
   }
 });
 
@@ -7197,7 +7243,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#main[data-v-f2b6376c] {\n  width: 100vw;\n  min-height: 90vh;\n  display: grid;\n  grid-template-rows: 5vh 95vh 90vh;\n  grid-template-columns: 1fr;\n  justify-items: center;\n}\n#header[data-v-f2b6376c] {\n  width: 100vw;\n  height: 5vh;\n  background-color: primary;\n}\n#top[data-v-f2b6376c] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 5vh;\n  padding: auto;\n}\n#foshiz[data-v-f2b6376c] {\n  display: grid;\n  grid-template-columns: 1fr;\n  grid-template-rows: 1fr;\n  margin: 0;\n  justify-items: center;\n}\n#bubble[data-v-f2b6376c] {\n  position: relative;\n  top: 155px;\n  font-size: 25px;\n}\n@media screen and (max-width: 490px) {\n#bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 145px;\n    font-size: 23px;\n}\n}\n@media screen and (max-width: 450px) {\n#bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 135px;\n    font-size: 21px;\n}\n}\n@media screen and (max-width: 410px) {\n#bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 125px;\n    font-size: 20px;\n}\n}\n@media screen and (max-width: 370px) {\n#bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 115px;\n    font-size: 20px;\n}\n}", ""]);
+exports.push([module.i, "#main[data-v-f2b6376c] {\n  width: 100vw;\n  min-height: 90vh;\n  display: grid;\n  grid-template-rows: 5vh 95vh 40vh 40vh 5vh;\n  grid-template-columns: 1fr;\n  justify-items: center;\n}\n#header[data-v-f2b6376c] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0vh;\n  width: 100vw;\n  height: 5vh;\n  background-color: primary;\n}\n#top[data-v-f2b6376c] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: -5vh;\n  padding: auto;\n}\n#foshiz[data-v-f2b6376c] {\n  display: grid;\n  grid-template-columns: 1fr;\n  grid-template-rows: 1fr;\n  margin: 0;\n  justify-items: center;\n}\n.bubble[data-v-f2b6376c] {\n  position: relative;\n  top: 155px;\n  font-size: 25px;\n}\n#headline[data-v-f2b6376c] {\n  display: grid;\n  justify-items: center;\n}\n#buttons[data-v-f2b6376c] {\n  display: grid;\n  justify-items: center;\n}\n#marketing1[data-v-f2b6376c],\n#marketing2[data-v-f2b6376c] {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr;\n  grid-template-rows: 1fr;\n}\n.hide[data-v-f2b6376c] {\n  display: none;\n}\n@media screen and (max-width: 490px) {\n.small-eagle[data-v-f2b6376c] {\n    margin-top: 10vh;\n    width: 300px;\n    height: 300px;\n    -webkit-transition: width 1s ease-in;\n    transition: width 1s ease-in;\n}\n.small-bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 185px;\n    font-size: 18px;\n}\n.bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 145px;\n    font-size: 23px;\n}\n#marketing1[data-v-f2b6376c] {\n    display: grid;\n    grid-template-columns: 1fr;\n    grid-template-rows: minmax(20vh, 1fr) 0vh 0vh;\n}\n#marketing2[data-v-f2b6376c] {\n    display: grid;\n    grid-template-columns: 1fr;\n    grid-template-rows: 0vh 0vh minmax(20vh, 1fr);\n}\n#main[data-v-f2b6376c] {\n    width: 100vw;\n    min-height: 90vh;\n    display: grid;\n    grid-template-rows: 5vh 95vh 20vh 20vh;\n    grid-template-columns: 1fr;\n    justify-items: center;\n}\n}\n@media screen and (max-width: 450px) {\n.bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 135px;\n    font-size: 21px;\n}\n}\n@media screen and (max-width: 410px) {\n.bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 125px;\n    font-size: 20px;\n}\n}\n@media screen and (max-width: 370px) {\n.bubble[data-v-f2b6376c] {\n    position: relative;\n    top: 115px;\n    font-size: 20px;\n}\n}", ""]);
 
 // exports
 
@@ -59431,7 +59477,9 @@ var render = function() {
     _vm._v(" "),
     _c("div", { attrs: { id: "top" } }, [
       _c("div", { attrs: { id: "foshiz" } }, [
-        _c("p", { attrs: { id: "bubble" } }, [_vm._v(_vm._s(_vm.getHead))]),
+        _c("p", { staticClass: "bubble", attrs: { id: "bubble" } }, [
+          _vm._v(_vm._s(_vm.getHead))
+        ]),
         _vm._v(" "),
         _c("img", {
           staticClass: "img-fluid",
@@ -59439,18 +59487,52 @@ var render = function() {
         }),
         _vm._v(" "),
         _c("div", { staticClass: "m-3", attrs: { id: "headline" } }, [
-          _c("p", { staticClass: "h4 m-1" }, [_vm._v(_vm._s(_vm.getSub))]),
+          _c("p", { staticClass: "h4 m-1", attrs: { id: "sub" } }, [
+            _vm._v(_vm._s(_vm.getSub))
+          ]),
           _vm._v(" "),
-          _vm._m(1)
+          _c("div", { attrs: { id: "buttons" } }, [
+            _c(
+              "a",
+              { staticClass: "btn btn-primary m-1", attrs: { href: "/login" } },
+              [_vm._v("sign-up")]
+            ),
+            _vm._v(" "),
+            _c(
+              "p",
+              {
+                staticClass: "btn btn-danger m-1",
+                attrs: { id: "but-why" },
+                on: { click: this.changeHead }
+              },
+              [_vm._v("but...why?")]
+            )
+          ])
         ])
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "m-4", attrs: { id: "marketing" } }, [
-      _c("p", [_vm._v(_vm._s(_vm.getMarkOne))]),
+    _c("div", { staticClass: "m-4", attrs: { id: "marketing1" } }, [
+      _c("div", [
+        _c("p", { staticClass: "h5" }, [_vm._v(_vm._s(_vm.getMarkOne))])
+      ]),
       _vm._v(" "),
-      _c("p", [_vm._v(_vm._s(_vm.getMarkTwo))])
-    ])
+      _c("div"),
+      _vm._v(" "),
+      _c("div")
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "m-4", attrs: { id: "marketing2" } }, [
+      _c("div"),
+      _vm._v(" "),
+      _c("div"),
+      _vm._v(" "),
+      _c("div", [
+        _c("p", { staticClass: "h5" }, [_vm._v(_vm._s(_vm.getMarkTwo))])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(1)
   ])
 }
 var staticRenderFns = [
@@ -59459,22 +59541,22 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "bg-primary", attrs: { id: "header" } }, [
-      _c("p", [_vm._v("FoShizzle")])
+      _c("p", { staticClass: "m-2" }, [_vm._v("FoShizzle")])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", {}, [
-      _c(
-        "a",
-        { staticClass: "btn btn-primary m-1", attrs: { href: "/login" } },
-        [_vm._v("sign-up")]
-      ),
-      _vm._v(" "),
-      _c("p", { staticClass: "btn btn-primary m-1" }, [_vm._v("but...why?")])
-    ])
+    return _c(
+      "div",
+      { staticClass: "bg-secondary w-100", attrs: { id: "footer" } },
+      [
+        _c("p", { staticClass: "m-2" }, [
+          _vm._v("copyright 2020 Great Ironic Eagle LLC")
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -73086,7 +73168,12 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_0__["default"].Store({
     marketingOne: 'FoShizzle is an app for you to connect with your closest friends, and share things for sh*ts and giggles.',
     marketingTwo: 'FoShizzle aspires to be a haven for the ridiculous, absurd, and comical.'
   },
-  mutations: {//some mutations here
+  mutations: {
+    //some mutations here
+    updateHeadline: function updateHeadline(state, data) {
+      state.headline = data;
+      console.log('this is the mutation');
+    }
   },
   actions: {//some actions here
   },

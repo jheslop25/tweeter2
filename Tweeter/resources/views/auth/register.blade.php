@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container min-vh-100">
     <div class="row justify-content-center">
         <div class="col-md-3 m-3">
             <img class="card img-fluid" src="{{ url('/logo.png')}}" alt="The Great Ironic Eagle">

@@ -19,6 +19,10 @@ const store = new Vuex.Store({
     },
     mutations: {
         //some mutations here
+        updateHeadline: function(state, data){
+            state.headline = data;
+            console.log('this is the mutation');
+        }
     },
     actions: {
         //some actions here
