@@ -4,14 +4,14 @@
 <div class="container min-vh-100">
     <div class="row justify-content-center align-items-center">
         <div class="col-md-3 m-3">
-            <img class="card img-fluid" src="{{ url('/logo.png')}}" alt="The Great Ironic Eagle">
+            <img class="card img-fluid" src="/logo.png" alt="The Great Ironic Eagle">
         </div>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Welcome To Tweeter! Please Login.') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="/login">
                         @csrf
 
                         <div class="form-group row">

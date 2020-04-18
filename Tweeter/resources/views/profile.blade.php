@@ -6,6 +6,6 @@
     @include('profile.user')
 @if(isUser($user[0]->name, Auth::user()->name))
 @endif
-    <Profile logourl="{{ url('/logo.png')}}" userid="{{ $user[0]->id }}" />
+    <Profile logourl="/logo.png" userid="{{ $user[0]->id }}" />
 </div>
 @endsection

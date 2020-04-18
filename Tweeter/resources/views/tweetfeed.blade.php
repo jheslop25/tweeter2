@@ -3,6 +3,6 @@
     @include('functions')
 @section('content')
 <div id="app">
-    <tweet-feed logoUrl="{{ url('/logo.png')}}"></tweet-feed>
+    <tweet-feed logoUrl="/logo.png"></tweet-feed>
 </div>
 @endsection

@@ -7,17 +7,16 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- @yield('header') -->
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="/js/app.js" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
 </head>
 <body class="d-grid">
     <div id="app" class="main-container-height-87">
@@ -28,7 +27,7 @@
                     <a class="navbar-brand text-light" href="/user/{{Auth::user()->id}}">My profile</a>
                     <a class="navbar-brand text-light" href="/users">Discover</a>
                 @else
-                    <a class="navbar-brand text-light" href="{{ url('/') }}">
+                    <a class="navbar-brand text-light" href="/">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 @endif
@@ -47,11 +46,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link text-light" href="/login">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link text-light" href="/register">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -61,13 +60,13 @@
                                 </a>
 
                                 <div class="dropdown-menu bg-primary dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item text-light" href="{{ route('logout') }}"
+                                    <a class="dropdown-item text-light" href="/logout"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="/logout" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>

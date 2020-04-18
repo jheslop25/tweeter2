@@ -2462,7 +2462,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       tweets: null,
-      page: 1
+      page: 1,
+      trigger: false
     };
   },
   methods: {
@@ -2487,20 +2488,24 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         console.log(err);
       });
+    },
+    someMagic: function someMagic() {
+      var context = this;
+      var controller = new scrollmagic__WEBPACK_IMPORTED_MODULE_0___default.a.Controller();
+      var scene = new scrollmagic__WEBPACK_IMPORTED_MODULE_0___default.a.Scene({
+        triggerElement: "#get-tweets",
+        triggerHook: "onEnter"
+      }).addTo(controller).on("enter", function () {
+        if (context.trigger == true) {
+          context.getTweets();
+        }
+      });
     }
   },
   mounted: function mounted() {
-    // window.addEventListener('load', () =>{
     var allTweets = this.getTweets();
     this.tweets = allTweets;
-    var context = this;
-    var controller = new scrollmagic__WEBPACK_IMPORTED_MODULE_0___default.a.Controller();
-    var scene = new scrollmagic__WEBPACK_IMPORTED_MODULE_0___default.a.Scene({
-      triggerElement: "#get-tweets",
-      triggerHook: "onEnter"
-    }).addTo(controller).on("enter", function () {
-      context.getTweets();
-    }); // });
+    this.someMagic();
   },
   components: {
     Tweet: _Tweet_vue__WEBPACK_IMPORTED_MODULE_1__["default"]

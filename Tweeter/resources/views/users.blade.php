@@ -19,7 +19,7 @@
                         @if($user->profile_photo)
                     <img class="img-fluid" src="{{$user->profile_photo}}" alt="profile photo">
                         @endif
-                        <h3>@ {{$user->name}}<img class="img-fluid" style="width: 30px;" src="{{ url('/logo.png')}}" alt="The Great Ironic Eagle"></h3>
+                        <h3>@ {{$user->name}}<img class="img-fluid" style="width: 30px;" src="/logo.png" alt="The Great Ironic Eagle"></h3>
                         <form action="/user/{{$user->id}}" method="get">
                             @csrf
                             <button class="btn btn-primary" type="submit" name="userTweets" value="{{$user->name}}">Profile</button>

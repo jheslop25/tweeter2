@@ -33,7 +33,8 @@ export default {
   data() {
     return {
       tweets: null,
-      page: 1
+      page: 1,
+      trigger: false
     };
   },
   methods: {
@@ -57,23 +58,26 @@ export default {
         .catch(err => {
           console.log(err);
         });
+    },
+    someMagic: function(){
+      let context = this;
+      var controller = new ScrollMagic.Controller();
+      var scene = new ScrollMagic.Scene({
+        triggerElement: "#get-tweets",
+        triggerHook: "onEnter"
+      })
+        .addTo(controller)
+        .on("enter", function() {
+          if(context.trigger == true){
+            context.getTweets();
+          }
+        });
     }
   },
   mounted() {
-    // window.addEventListener('load', () =>{
     let allTweets = this.getTweets();
     this.tweets = allTweets;
-    let context = this;
-    var controller = new ScrollMagic.Controller();
-    var scene = new ScrollMagic.Scene({
-      triggerElement: "#get-tweets",
-      triggerHook: "onEnter"
-    })
-      .addTo(controller)
-      .on("enter", function() {
-        context.getTweets();
-      });
-    // });
+    this.someMagic();
   },
   components: {
     Tweet
