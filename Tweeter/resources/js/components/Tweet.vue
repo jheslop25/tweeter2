@@ -9,13 +9,15 @@
     <img id="post-img" class="img-fluid" v-if="this.photo" :src="photo" alt="a dank meme" />
     <p class="text-muted">{{this.readableDate}}</p>
     <div class="row">
-      <like class="col-5" :hasliked="this.hasliked" :tweetid="this.id" :likes="this.likes" />
+        <edit-delete v-if="this.owner" :content="this.content"/>
+      <like class="col-6" :hasliked="this.hasliked" :tweetid="this.id" :likes="this.likes" />
     </div>
     <comments :comments="this.comments" :tweetid="this.id" />
   </div>
 </template>
 
 <script>
+import EditDelete from './EditDelete.vue';
 import Like from "./Like.vue";
 import Comments from "./Comments.vue";
 export default {
@@ -47,7 +49,8 @@ export default {
   },
   components: {
     Like,
-    Comments
+    Comments,
+    EditDelete
   }
 };
 </script>

@@ -90,16 +90,15 @@ class tweetsController extends Controller
             if ($request->validate([
                 'content' => 'required | min:3 | max:144'
             ])) {
-                $id = $request->tweet_id;
-                var_dump($id);
+                $id = $request->input['tweetId'];
                 $tweet = \App\Tweets::find($id);
 
-                var_dump($tweet);
-                $tweet->content = $request->content;
+                //var_dump($tweet);
+                $tweet->content = $request->input['content'];
 
                 $tweet->save();
 
-                return back();
+                return response()->json(['msg' => 'tweet updated'], 200);
             }
         }
     }

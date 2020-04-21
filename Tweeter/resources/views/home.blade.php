@@ -10,7 +10,10 @@
     <link href='css/app.css' rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="author" content="John Heslop">
+    <meta name="description" content="FoShizzle is an app for you to connect with your closest friends, and share things for sh*ts and giggles.">
+    <meta name="keywords" content="foshizzle, friends, group chat, tweeter">
+    <title>Foshizzle</title>
 </head>
 
 <body>

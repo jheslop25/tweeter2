@@ -1,9 +1,9 @@
 <template>
     <div>
-        <p class="btn btn-danger" @click="deleteTweet">Delete</p>
-        <p v-if="!show" class="btn btn-secondary" @click="showEdit">Edit</p>
-        <input v-if="show" type="text" v-model="input">
-        <p v-if="show" @click="updateTweet" class="btn btn-secondary">Submit</p>
+        <p class="btn btn-danger m-1" @click="deleteTweet">Delete</p>
+        <p v-if="!show" class="btn btn-secondary m-1" @click="showEdit">Edit</p>
+        <input class="form-control m-1" v-if="show" type="text" v-model="input">
+        <p v-if="show" @click="updateTweet" class="btn btn-secondary m-1">Submit</p>
     </div>
 </template>
 
@@ -26,14 +26,14 @@
             },
             updateTweet: function(){
                 if(confirm('update tweet?')){
-                    axios.post('/ajax/update/tweet', {
+                    axios.post('/tweets/update', {
                         input: {
                             content: this.input,
                             userId: this.userid,
                             tweetId: this.tweetid
                         }
                     }).then((result) => {
-                        this.$root.$emit('updateTweet');
+                        this.$root.$emit('updateTweet'+this.tweetid);
                         //maybe we want to use vueX for this...
                     }).catch((err) => {
                         console.log(err);
@@ -44,8 +44,13 @@
         data(){
             return {
                 show: false,
-                input: ''
+                input: this.content
             }
+        },
+        props: {
+            content: String,
+            userid: Number,
+            tweetid: Number
         }
     }
 </script>

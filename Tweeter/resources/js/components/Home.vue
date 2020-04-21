@@ -1,7 +1,7 @@
 <template>
   <div id="main">
     <div id="header" class="bg-primary px-4 row align-content-center">
-      <p class="m-2 h5 text-light">FoShizzle</p>
+      <p class="m-2 h1 text-light">FoShizzle</p>
     </div>
     <div id="top">
       <div id="foshiz">
